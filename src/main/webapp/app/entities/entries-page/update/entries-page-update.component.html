@@ -1,0 +1,86 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-entries-page-heading" data-cy="EntriesPageCreateUpdateHeading">Create or edit a Entries Page</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_normalEntries">Normal Entries</label>
+          <input
+            type="text"
+            class="form-control"
+            name="normalEntries"
+            id="field_normalEntries"
+            data-cy="normalEntries"
+            formControlName="normalEntries"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_date">Date</label>
+          <div class="input-group">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="text"
+              class="form-control"
+              name="date"
+              ngbDatepicker
+              #dateDp="ngbDatepicker"
+              formControlName="date"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_currentTab">Current Tab</label>
+          <select class="form-control" name="currentTab" formControlName="currentTab" id="field_currentTab" data-cy="currentTab">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let tabLabel of tabLabelValues" [value]="tabLabel">tabLabel</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_moodJournalPage">Mood Journal Page</label>
+          <select
+            class="form-control"
+            id="field_moodJournalPage"
+            data-cy="moodJournalPage"
+            name="moodJournalPage"
+            formControlName="moodJournalPage"
+            [compareWith]="compareMoodJournalPage"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="moodJournalPageOption" *ngFor="let moodJournalPageOption of moodJournalPagesSharedCollection">
+              {{ moodJournalPageOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

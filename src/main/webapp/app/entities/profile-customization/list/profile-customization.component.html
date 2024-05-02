@@ -1,0 +1,142 @@
+<div>
+  <h2 id="page-heading" data-cy="ProfileCustomizationHeading">
+    <span>Profile Customizations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-profile-customization"
+        [routerLink]="['/profile-customization/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Profile Customization </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="profileCustomizations?.length === 0">
+    <span>No Profile Customizations found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="profileCustomizations && profileCustomizations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="preferences">
+            <div class="d-flex">
+              <span>Preferences</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="privacySettings">
+            <div class="d-flex">
+              <span>Privacy Settings</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="accountHistory">
+            <div class="d-flex">
+              <span>Account History</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="bioDescription">
+            <div class="d-flex">
+              <span>Bio Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="joinedTeams.id">
+            <div class="d-flex">
+              <span>Joined Teams</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="setting.id">
+            <div class="d-flex">
+              <span>Setting</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="achievement.id">
+            <div class="d-flex">
+              <span>Achievement</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let profileCustomization of profileCustomizations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/profile-customization', profileCustomization.id, 'view']">{{ profileCustomization.id }}</a>
+          </td>
+          <td>{{ profileCustomization.preferences }}</td>
+          <td>{{ profileCustomization.privacySettings }}</td>
+          <td>{{ profileCustomization.accountHistory }}</td>
+          <td>{{ profileCustomization.bioDescription }}</td>
+          <td>
+            <div *ngIf="profileCustomization.joinedTeams">
+              <a [routerLink]="['/joined-teams', profileCustomization.joinedTeams.id, 'view']">{{ profileCustomization.joinedTeams.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="profileCustomization.setting">
+              <a [routerLink]="['/setting', profileCustomization.setting.id, 'view']">{{ profileCustomization.setting.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="profileCustomization.achievement">
+              <a [routerLink]="['/achievement', profileCustomization.achievement.id, 'view']">{{ profileCustomization.achievement.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/profile-customization', profileCustomization.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/profile-customization', profileCustomization.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(profileCustomization)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

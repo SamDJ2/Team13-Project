@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141213",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "music",
+  "fields": [
+    {
+      "fieldName": "levels",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "progress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "timer",
+      "fieldType": "Duration"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Music",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "screenTime",
+      "otherEntityRelationshipName": "music",
+      "relationshipName": "screenTime",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

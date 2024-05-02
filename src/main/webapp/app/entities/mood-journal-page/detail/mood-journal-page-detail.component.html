@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="moodJournalPage">
+      <h2 data-cy="moodJournalPageDetailsHeading"><span>Mood Journal Page</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ moodJournalPage.id }}</span>
+        </dd>
+        <dt><span>All Entries</span></dt>
+        <dd>
+          <span>{{ moodJournalPage.allEntries }}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+          <span>{{ moodJournalPage.date | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Current Tab</span></dt>
+        <dd>
+          <span>{{ moodJournalPage.currentTab }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mood-journal-page', moodJournalPage.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

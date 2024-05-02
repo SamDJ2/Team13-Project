@@ -1,0 +1,28 @@
+{
+  "changelogDate": "20240319025640",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "challengeName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "challengeLevel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateStarted",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "username",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "History",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

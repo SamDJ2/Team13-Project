@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141226",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "members",
+  "fields": [
+    {
+      "fieldName": "groupID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "userID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "leader",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Members",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "grouping",
+      "otherEntityRelationshipName": "members",
+      "relationshipName": "grouping",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

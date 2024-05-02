@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141223",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "weekly_summary",
+  "fields": [
+    {
+      "fieldName": "summaryID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "summaryText",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "WeeklySummary",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "newWeeklyHabitTracker",
+      "otherEntityRelationshipName": "weeklySummary",
+      "ownerSide": false,
+      "relationshipName": "newWeeklyHabitTracker",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

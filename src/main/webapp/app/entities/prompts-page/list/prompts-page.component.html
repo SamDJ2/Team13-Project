@@ -1,0 +1,142 @@
+<div>
+  <h2 id="page-heading" data-cy="PromptsPageHeading">
+    <span>Prompts Pages</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-prompts-page"
+        [routerLink]="['/prompts-page/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Prompts Page </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="promptsPages?.length === 0">
+    <span>No Prompts Pages found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="promptsPages && promptsPages.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="promptedEntries">
+            <div class="d-flex">
+              <span>Prompted Entries</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="date">
+            <div class="d-flex">
+              <span>Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="emotionFromMoodPicker">
+            <div class="d-flex">
+              <span>Emotion From Mood Picker</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="currentTab">
+            <div class="d-flex">
+              <span>Current Tab</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="moodPicker.id">
+            <div class="d-flex">
+              <span>Mood Picker</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="emotionPage.id">
+            <div class="d-flex">
+              <span>Emotion Page</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="moodJournalPage.id">
+            <div class="d-flex">
+              <span>Mood Journal Page</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let promptsPage of promptsPages; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/prompts-page', promptsPage.id, 'view']">{{ promptsPage.id }}</a>
+          </td>
+          <td>{{ promptsPage.promptedEntries }}</td>
+          <td>{{ promptsPage.date | formatMediumDate }}</td>
+          <td>{{ promptsPage.emotionFromMoodPicker }}</td>
+          <td>{{ promptsPage.currentTab }}</td>
+          <td>
+            <div *ngIf="promptsPage.moodPicker">
+              <a [routerLink]="['/mood-picker', promptsPage.moodPicker.id, 'view']">{{ promptsPage.moodPicker.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="promptsPage.emotionPage">
+              <a [routerLink]="['/emotion-page', promptsPage.emotionPage.id, 'view']">{{ promptsPage.emotionPage.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="promptsPage.moodJournalPage">
+              <a [routerLink]="['/mood-journal-page', promptsPage.moodJournalPage.id, 'view']">{{ promptsPage.moodJournalPage.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/prompts-page', promptsPage.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/prompts-page', promptsPage.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(promptsPage)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

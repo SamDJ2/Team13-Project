@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="members">
+      <h2 data-cy="membersDetailsHeading"><span>Members</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ members.id }}</span>
+        </dd>
+        <dt><span>Group ID</span></dt>
+        <dd>
+          <span>{{ members.groupID }}</span>
+        </dd>
+        <dt><span>User ID</span></dt>
+        <dd>
+          <span>{{ members.userID }}</span>
+        </dd>
+        <dt><span>Leader</span></dt>
+        <dd>
+          <span>{{ members.leader }}</span>
+        </dd>
+        <dt><span>Grouping</span></dt>
+        <dd>
+          <div *ngIf="members.grouping">
+            <a [routerLink]="['/grouping', members.grouping.id, 'view']">{{ members.grouping.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/members', members.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

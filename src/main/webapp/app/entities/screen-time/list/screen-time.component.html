@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="ScreenTimeHeading">
+    <span>Screen Times</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-screen-time"
+        [routerLink]="['/screen-time/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Screen Time </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="screenTimes?.length === 0">
+    <span>No Screen Times found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="screenTimes && screenTimes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="selectCategory">
+            <div class="d-flex">
+              <span>Select Category</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="videoGames.id">
+            <div class="d-flex">
+              <span>Video Games</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="movies.id">
+            <div class="d-flex">
+              <span>Movies</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="socialMedia.id">
+            <div class="d-flex">
+              <span>Social Media</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="music.id">
+            <div class="d-flex">
+              <span>Music</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let screenTime of screenTimes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/screen-time', screenTime.id, 'view']">{{ screenTime.id }}</a>
+          </td>
+          <td>{{ screenTime.selectCategory }}</td>
+          <td>
+            <div *ngIf="screenTime.videoGames">
+              <a [routerLink]="['/video-games', screenTime.videoGames.id, 'view']">{{ screenTime.videoGames.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="screenTime.movies">
+              <a [routerLink]="['/movies', screenTime.movies.id, 'view']">{{ screenTime.movies.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="screenTime.socialMedia">
+              <a [routerLink]="['/social-media', screenTime.socialMedia.id, 'view']">{{ screenTime.socialMedia.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="screenTime.music">
+              <a [routerLink]="['/music', screenTime.music.id, 'view']">{{ screenTime.music.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/screen-time', screenTime.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/screen-time', screenTime.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(screenTime)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

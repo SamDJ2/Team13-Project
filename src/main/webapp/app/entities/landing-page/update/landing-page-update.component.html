@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-landing-page-heading" data-cy="LandingPageCreateUpdateHeading">Create or edit a Landing Page</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_getStarted">Get Started</label>
+          <input
+            type="text"
+            class="form-control"
+            name="getStarted"
+            id="field_getStarted"
+            data-cy="getStarted"
+            formControlName="getStarted"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_about">About</label>
+          <input type="text" class="form-control" name="about" id="field_about" data-cy="about" formControlName="about" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_team">Team</label>
+          <input type="text" class="form-control" name="team" id="field_team" data-cy="team" formControlName="team" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_contact">Contact</label>
+          <input type="text" class="form-control" name="contact" id="field_contact" data-cy="contact" formControlName="contact" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_moodPicker">Mood Picker</label>
+          <select
+            class="form-control"
+            id="field_moodPicker"
+            data-cy="moodPicker"
+            name="moodPicker"
+            formControlName="moodPicker"
+            [compareWith]="compareMoodPicker"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="moodPickerOption" *ngFor="let moodPickerOption of moodPickersCollection">{{ moodPickerOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

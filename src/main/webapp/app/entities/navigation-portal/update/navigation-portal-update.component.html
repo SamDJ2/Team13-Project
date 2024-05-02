@@ -1,0 +1,123 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-navigation-portal-heading" data-cy="NavigationPortalCreateUpdateHeading">Create or edit a Navigation Portal</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_features">Features</label>
+          <input type="text" class="form-control" name="features" id="field_features" data-cy="features" formControlName="features" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_selectedFeature">Selected Feature</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="selectedFeature"
+            id="field_selectedFeature"
+            data-cy="selectedFeature"
+            formControlName="selectedFeature"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_challenges">Challenges</label>
+          <select
+            class="form-control"
+            id="field_challenges"
+            data-cy="challenges"
+            name="challenges"
+            formControlName="challenges"
+            [compareWith]="compareChallenges"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="challengesOption" *ngFor="let challengesOption of challengesCollection">{{ challengesOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_habit">Habit</label>
+          <select class="form-control" id="field_habit" data-cy="habit" name="habit" formControlName="habit" [compareWith]="compareHabit">
+            <option [ngValue]="null"></option>
+            <option [ngValue]="habitOption" *ngFor="let habitOption of habitsCollection">{{ habitOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_leaderBoards">Leader Boards</label>
+          <select
+            class="form-control"
+            id="field_leaderBoards"
+            data-cy="leaderBoards"
+            name="leaderBoards"
+            formControlName="leaderBoards"
+            [compareWith]="compareLeaderBoards"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="leaderBoardsOption" *ngFor="let leaderBoardsOption of leaderBoardsCollection">
+              {{ leaderBoardsOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_profileCustomization">Profile Customization</label>
+          <select
+            class="form-control"
+            id="field_profileCustomization"
+            data-cy="profileCustomization"
+            name="profileCustomization"
+            formControlName="profileCustomization"
+            [compareWith]="compareProfileCustomization"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="profileCustomizationOption" *ngFor="let profileCustomizationOption of profileCustomizationsCollection">
+              {{ profileCustomizationOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_moodJournalPage">Mood Journal Page</label>
+          <select
+            class="form-control"
+            id="field_moodJournalPage"
+            data-cy="moodJournalPage"
+            name="moodJournalPage"
+            formControlName="moodJournalPage"
+            [compareWith]="compareMoodJournalPage"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="moodJournalPageOption" *ngFor="let moodJournalPageOption of moodJournalPagesCollection">
+              {{ moodJournalPageOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

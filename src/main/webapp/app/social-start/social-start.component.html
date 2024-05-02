@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <title>Junk Food Start</title>
+  </head>
+
+  <body [ngClass]="theme">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index" class="active">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div [ngSwitch]="currentState">
+      <div *ngSwitchCase="'state1'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Social Media</h2>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 1</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h5><em>A Nice Way To Start.</em></h5>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Social Media For 12 Hours.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Commit to avoiding all social media platforms for the next 12 hours. This short break is a valuable
+                              opportunity to detach from the constant flow of notifications and updates, allowing you to redirect your
+                              attention to more immediate and possibly neglected aspects of your life. Use this time to engage in activities
+                              that enrich your well-being, such as reading, practicing a hobby, or spending quality time with family and
+                              friends. Notice how this brief digital detox impacts your mood and productivity, and consider making it a
+                              regular part of your routine for balanced digital consumption.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('SM1')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('SM1', 12, 'Social Media', '1'); $event.preventDefault(); sendPoints(1)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('SM1')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['SM1'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'SM1',
+                                        'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '1'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(1)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state2'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Social Media</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 2</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are good at self control?</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Social Media for A Day.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Challenge yourself to a full day without social media. A 24-hour break can significantly reduce digital
+                              distractions and provide you with a clearer perspective on how much time you might be devoting to scrolling
+                              through feeds. It's an opportunity to reconnect with the offline world, potentially discovering more
+                              fulfilling ways to spend your time. Pay attention to any changes in your stress levels or overall satisfaction
+                              with the day, as these insights could inspire you to establish healthier social media habits.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('SM2')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('SM2', 24, 'Social Media', '2'); $event.preventDefault(); sendPoints(2)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('SM2')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['SM2'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'SM2',
+                                        'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '2'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(2)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state3'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Social Media</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 3</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are almost there.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Social Media For 2 Days.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Extend your social media hiatus to 48 hours. Two days away from social media can deepen the benefits of your
+                              digital detox, encouraging a more mindful approach to how and when you engage with these platforms. This
+                              period allows for a fuller appreciation of life without the constant background noise of online activity,
+                              possibly leading to improved focus, deeper connections with others, and enhanced personal growth. Reflect on
+                              this experience to understand the role social media plays in your life and how you might want to adjust that
+                              moving forward.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('SM3')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('SM3', 48, 'Social Media', '3'); $event.preventDefault(); sendPoints(3)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('SM3')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['SM3'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'SM3',
+                                        'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '3'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(3)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state4'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Social Media</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 4</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>Time to shine.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Social Media For A Week!</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Aim to go without social media for an entire week. This extended break is a powerful way to reset your digital
+                              habits, offering a profound insight into the impact of social media on your mental health, time management,
+                              and relationships. As the days pass, you may find alternative, more rewarding ways to fill your time, leading
+                              to a more balanced and contented lifestyle. Throughout the week, monitor any shifts in your wellbeing, social
+                              interactions, and productivity. This week-long journey can serve as a foundation for reevaluating your
+                              relationship with social media and implementing long-term changes to ensure a healthier digital life balance.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('SM4')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('SM4', 168, 'Social Media', '4'); $event.preventDefault(); sendPoints(4)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('SM4')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['SM4'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'SM4',
+                                        'Social Media (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '4'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(4)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

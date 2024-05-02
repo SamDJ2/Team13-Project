@@ -1,0 +1,162 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+body,
+html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+body {
+  opacity: 0; /* Start hidden */
+  transition: opacity 2s ease-in-out; /* Transition for fade-in */
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url('okay.jpg');
+  min-height: 100%;
+}
+
+.w3-quarter img {
+  width: 100px;
+  height: 100px;
+  background-image: url('smoking.jpg');
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column; /* This ensures the content is laid out in a vertical column */
+  align-items: center; /* This centers the content horizontally */
+  justify-content: center; /* This centers the content vertically, if needed */
+  height: 100vh; /* Adjust the height as needed to fill the desired space */
+  text-align: center; /* This centers the text of each child element */
+}
+
+.w3-quarter:hover img,
+.quarter:hover img {
+  opacity: 0.7;
+  transition: opacity 0.5s ease;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+.w3-bar-item:hover,
+.w3-button:hover {
+  background-color: #f1f1f1;
+}
+
+.team-container .w3-row-padding {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.team-container .w3-col {
+  flex: 0 0 25%; /* Adjust to control the card width */
+  max-width: 25%; /* Max width to match flex-basis */
+  box-sizing: border-box;
+  padding: 0 8px; /* Adjust padding as needed */
+  margin-bottom: 20px; /* Space below each card */
+}
+
+.flip-card {
+  perspective: 1000px;
+  cursor: pointer;
+  min-height: 320px; /* Adjust based on your content */
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  background-color: #2980b9;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure .flipped class correctly rotates the .flip-card-inner */
+.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Challenges and About Sections */
+.challenges-container,
+.w3-container {
+  padding: 64px 16px;
+  text-align: center;
+}
+
+.large {
+  font-size: 1.25em;
+}
+
+.row-padding {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.quarter,
+.w3-quarter {
+  width: 25%;
+  padding: 0 4px; /* Adjust padding as needed */
+  box-sizing: border-box;
+}
+
+.picture {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.image:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+  .team-container .w3-col {
+    flex-basis: 50%; /* Each card takes up 50% of the width on smaller screens */
+    max-width: 50%;
+  }
+}
+
+.w3-modal-content {
+  max-width: 200px; /* Adjust modal size as needed */
+}

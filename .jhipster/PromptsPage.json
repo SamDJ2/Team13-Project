@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141232",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "prompts_page",
+  "fields": [
+    {
+      "fieldName": "promptedEntries",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "emotionFromMoodPicker",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "currentTab",
+      "fieldType": "TabLabel",
+      "fieldValues": "All,Entries,Prompts"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PromptsPage",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "moodPicker",
+      "otherEntityRelationshipName": "promptsPage",
+      "ownerSide": true,
+      "relationshipName": "moodPicker",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "emotionPage",
+      "otherEntityRelationshipName": "promptsPage",
+      "ownerSide": true,
+      "relationshipName": "emotionPage",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "moodJournalPage",
+      "otherEntityRelationshipName": "promptsPage",
+      "relationshipName": "moodJournalPage",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="moodPicker">
+      <h2 data-cy="moodPickerDetailsHeading"><span>Mood Picker</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ moodPicker.id }}</span>
+        </dd>
+        <dt><span>Mood Picker ID</span></dt>
+        <dd>
+          <span>{{ moodPicker.moodPickerID }}</span>
+        </dd>
+        <dt><span>Mood</span></dt>
+        <dd>
+          <span>{{ moodPicker.mood }}</span>
+        </dd>
+        <dt><span>Navigation Portal</span></dt>
+        <dd>
+          <div *ngIf="moodPicker.navigationPortal">
+            <a [routerLink]="['/navigation-portal', moodPicker.navigationPortal.id, 'view']">{{ moodPicker.navigationPortal.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mood-picker', moodPicker.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="NewWeeklyHabitTrackerHeading">
+    <span>New Weekly Habit Trackers</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-new-weekly-habit-tracker"
+        [routerLink]="['/new-weekly-habit-tracker/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new New Weekly Habit Tracker </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="newWeeklyHabitTrackers?.length === 0">
+    <span>No New Weekly Habit Trackers found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="newWeeklyHabitTrackers && newWeeklyHabitTrackers.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="recordID">
+            <div class="d-flex">
+              <span>Record ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="habitCompletion">
+            <div class="d-flex">
+              <span>Habit Completion</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="date">
+            <div class="d-flex">
+              <span>Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="weeklySummary.id">
+            <div class="d-flex">
+              <span>Weekly Summary</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="habit.id">
+            <div class="d-flex">
+              <span>Habit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let newWeeklyHabitTracker of newWeeklyHabitTrackers; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/new-weekly-habit-tracker', newWeeklyHabitTracker.id, 'view']">{{ newWeeklyHabitTracker.id }}</a>
+          </td>
+          <td>{{ newWeeklyHabitTracker.recordID }}</td>
+          <td>{{ newWeeklyHabitTracker.habitCompletion }}</td>
+          <td>{{ newWeeklyHabitTracker.date | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="newWeeklyHabitTracker.weeklySummary">
+              <a [routerLink]="['/weekly-summary', newWeeklyHabitTracker.weeklySummary.id, 'view']">{{
+                newWeeklyHabitTracker.weeklySummary.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="newWeeklyHabitTracker.habit">
+              <a [routerLink]="['/habit', newWeeklyHabitTracker.habit.id, 'view']">{{ newWeeklyHabitTracker.habit.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/new-weekly-habit-tracker', newWeeklyHabitTracker.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/new-weekly-habit-tracker', newWeeklyHabitTracker.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(newWeeklyHabitTracker)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

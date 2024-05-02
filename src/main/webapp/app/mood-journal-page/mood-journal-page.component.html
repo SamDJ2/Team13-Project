@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>MOOD JOURNAL</title>
+  </head>
+  <body [ngClass]="theme">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <a href="#" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage" class="active">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Main Banner Area End ***** -->
+    <div class="container" [ngClass]="theme">
+      <div class="row">
+        <div class="col-lg-12" [ngClass]="theme">
+          <div class="page-content" [ngClass]="theme">
+            <h4 class="welcome-title">Welcome to Your Mood Journal</h4>
+            <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 2px; margin-right: 5px"
+              />
+              <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
+
+            <!-- ***** Introductory Section Expanded ***** -->
+            <div class="intro-section" [ngClass]="theme">
+              <h2 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">What is the <u>Mood Journal</u>?</h2>
+              <p [style.fontSize]="fontSizeMultiplier + 'rem'">
+                Mood Journal is a personal space for you to express your thoughts, emotions, and daily experiences. It's designed to help
+                you track your mood over time, discover patterns, and reflect on your mental well-being. Whether you're looking to manage
+                stress, enhance self-awareness, or simply keep a record of your days, Mood Journal is here to support you on your journey.
+              </p>
+              <!-- Subsection for Entries -->
+              <div class="intro-subsection" [ngClass]="theme">
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Entries</h3>
+                <p [style.fontSize]="fontSizeMultiplier + 'rem'">
+                  'Entries' allow you to freely jot down your daily experiences, thoughts, and feelings. This is your space to write without
+                  constraints, making it perfect for keeping track of day-to-day activities, introspection, or expressing creativity. It's
+                  your personal diary for whatever you wish to record.
+                </p>
+              </div>
+              <!-- Subsection for Prompts -->
+              <div class="intro-subsection" [ngClass]="theme">
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">Prompts</h3>
+                <p [style.fontSize]="fontSizeMultiplier + 'rem'">
+                  'Prompts' offer guided prompts to inspire your writing. They are designed to help you explore your thoughts and feelings
+                  more deeply, providing a starting point for reflection and self-discovery. These prompts are generated based on your
+                  chosen mood from your home page thus engaging your mind and encouraging meaningful entries based on your feelings.
+                </p>
+              </div>
+              <p [style.fontSize]="fontSizeMultiplier * 0.8 + 'rem'">
+                Start by selecting 'Entries' to log your daily experiences or 'Prompts' to explore guided reflections.
+              </p>
+            </div>
+            <!-- ***** MoodJournal Section Start ***** -->
+            <div class="MJ_SECTION" [ngClass]="theme">
+              <div class="sidebar" id="sidebar" [ngClass]="theme">
+                <ul>
+                  <li><a href="#" routerLink="/MoodJournalPage">All</a></li>
+                  <li><a href="#" routerLink="/Entries">Entries</a></li>
+                  <li><a href="#" routerLink="/Prompts">Prompts</a></li>
+                </ul>
+              </div>
+              <div id="journal-content" [ngClass]="theme">
+                <!-- ***** Search Bar Added Here ***** -->
+                <div class="journal-search" [ngClass]="theme">
+                  <form id="journalSearch" action="#" [ngClass]="theme">
+                    <input
+                      type="text"
+                      placeholder="Search Mood Journal"
+                      id="journalSearchText"
+                      name="searchKeyword"
+                      [(ngModel)]="searchTerm"
+                      (input)="filterEntries(); filterPromptedEntries()"
+                    />
+                  </form>
+                </div>
+                <!-- Display Entries -->
+                <div *ngFor="let entry of filteredEntries" class="card mb-4 normal-entry entry-container">
+                  <div class="card-body">
+                    <h6 class="card-title">{{ entry.title }}</h6>
+                    <p class="card-text">{{ entry.content }}</p>
+                    <p class="card-text">
+                      <small>Entry Date: {{ formatDate(entry.date) | date }}</small>
+                    </p>
+                    <button class="delete-button" (click)="deleteEntry(entry.id)">Delete</button>
+                  </div>
+                </div>
+                <!-- Display Prompted Entries -->
+                <div class="card mb-4 prompted-entry" *ngFor="let promptedEntry of filteredPromptedEntries">
+                  <div class="card-body">
+                    <h6 class="card-title">{{ promptedEntry.title }}</h6>
+                    <p class="card-text">Prompt: {{ promptedEntry.prompt }}</p>
+                    <p class="card-text">{{ promptedEntry.content }}</p>
+                    <p class="card-text">
+                      <small>Entry Date: {{ formatDate(promptedEntry.date) | date: 'longDate' }}</small>
+                    </p>
+                    <button class="delete-button" (click)="deletePromptedEntry(promptedEntry.id)">Delete</button>
+                  </div>
+                </div>
+                <!-- ***** MoodJournal Section End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer [ngClass]="theme">
+      <div class="container" [ngClass]="theme">
+        <div class="row" [ngClass]="theme">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

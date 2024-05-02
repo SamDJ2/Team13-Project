@@ -1,0 +1,130 @@
+<div>
+  <h2 id="page-heading" data-cy="HabitstrackingHeading">
+    <span>Habitstrackings</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-habitstracking"
+        [routerLink]="['/habitstracking/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Habitstracking </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="habitstrackings?.length === 0">
+    <span>No Habitstrackings found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="habitstrackings && habitstrackings.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nameOfHabit">
+            <div class="d-flex">
+              <span>Name Of Habit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dayOfHabit">
+            <div class="d-flex">
+              <span>Day Of Habit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="weekOfHabit">
+            <div class="d-flex">
+              <span>Week Of Habit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="completedHabit">
+            <div class="d-flex">
+              <span>Completed Habit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="usernameHabit">
+            <div class="d-flex">
+              <span>Username Habit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="habitIDEN">
+            <div class="d-flex">
+              <span>Habit IDEN</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="summary">
+            <div class="d-flex">
+              <span>Summary</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let habitstracking of habitstrackings; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/habitstracking', habitstracking.id, 'view']">{{ habitstracking.id }}</a>
+          </td>
+          <td>{{ habitstracking.nameOfHabit }}</td>
+          <td>{{ habitstracking.dayOfHabit }}</td>
+          <td>{{ habitstracking.weekOfHabit }}</td>
+          <td>{{ habitstracking.completedHabit }}</td>
+          <td>{{ habitstracking.usernameHabit }}</td>
+          <td>{{ habitstracking.habitIDEN }}</td>
+          <td>{{ habitstracking.summary }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/habitstracking', habitstracking.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/habitstracking', habitstracking.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(habitstracking)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

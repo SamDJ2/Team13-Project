@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141234",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "mood_picker",
+  "fields": [
+    {
+      "fieldName": "moodPickerID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "mood",
+      "fieldType": "Moods",
+      "fieldValues": "Mood1,Mood2,Mood3"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "MoodPicker",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "navigationPortal",
+      "otherEntityRelationshipName": "moodPicker",
+      "ownerSide": true,
+      "relationshipName": "navigationPortal",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "promptsPage",
+      "otherEntityRelationshipName": "moodPicker",
+      "ownerSide": false,
+      "relationshipName": "promptsPage",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "emotionPage",
+      "otherEntityRelationshipName": "moodPicker",
+      "ownerSide": false,
+      "relationshipName": "emotionPage",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "landingPage",
+      "otherEntityRelationshipName": "moodPicker",
+      "ownerSide": false,
+      "relationshipName": "landingPage",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

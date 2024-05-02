@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141208",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "filtered",
+  "fields": [
+    {
+      "fieldName": "search",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "results",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "filtering",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Filtered",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "challenges",
+      "otherEntityRelationshipName": "filtered",
+      "ownerSide": false,
+      "relationshipName": "challenges",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

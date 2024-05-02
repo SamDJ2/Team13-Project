@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="screenTime">
+      <h2 data-cy="screenTimeDetailsHeading"><span>Screen Time</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ screenTime.id }}</span>
+        </dd>
+        <dt><span>Select Category</span></dt>
+        <dd>
+          <span>{{ screenTime.selectCategory }}</span>
+        </dd>
+        <dt><span>Video Games</span></dt>
+        <dd>
+          <div *ngIf="screenTime.videoGames">
+            <a [routerLink]="['/video-games', screenTime.videoGames.id, 'view']">{{ screenTime.videoGames.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Movies</span></dt>
+        <dd>
+          <div *ngIf="screenTime.movies">
+            <a [routerLink]="['/movies', screenTime.movies.id, 'view']">{{ screenTime.movies.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Social Media</span></dt>
+        <dd>
+          <div *ngIf="screenTime.socialMedia">
+            <a [routerLink]="['/social-media', screenTime.socialMedia.id, 'view']">{{ screenTime.socialMedia.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Music</span></dt>
+        <dd>
+          <div *ngIf="screenTime.music">
+            <a [routerLink]="['/music', screenTime.music.id, 'view']">{{ screenTime.music.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/screen-time', screenTime.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

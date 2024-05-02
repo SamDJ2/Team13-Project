@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="profileCustomization">
+      <h2 data-cy="profileCustomizationDetailsHeading"><span>Profile Customization</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ profileCustomization.id }}</span>
+        </dd>
+        <dt><span>Preferences</span></dt>
+        <dd>
+          <span>{{ profileCustomization.preferences }}</span>
+        </dd>
+        <dt><span>Privacy Settings</span></dt>
+        <dd>
+          <span>{{ profileCustomization.privacySettings }}</span>
+        </dd>
+        <dt><span>Account History</span></dt>
+        <dd>
+          <span>{{ profileCustomization.accountHistory }}</span>
+        </dd>
+        <dt><span>Bio Description</span></dt>
+        <dd>
+          <span>{{ profileCustomization.bioDescription }}</span>
+        </dd>
+        <dt><span>Joined Teams</span></dt>
+        <dd>
+          <div *ngIf="profileCustomization.joinedTeams">
+            <a [routerLink]="['/joined-teams', profileCustomization.joinedTeams.id, 'view']">{{ profileCustomization.joinedTeams.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Setting</span></dt>
+        <dd>
+          <div *ngIf="profileCustomization.setting">
+            <a [routerLink]="['/setting', profileCustomization.setting.id, 'view']">{{ profileCustomization.setting.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Achievement</span></dt>
+        <dd>
+          <div *ngIf="profileCustomization.achievement">
+            <a [routerLink]="['/achievement', profileCustomization.achievement.id, 'view']">{{ profileCustomization.achievement.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/profile-customization', profileCustomization.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

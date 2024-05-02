@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Challenges.
+    -->
+    <changeSet id="20240305141206-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="progress_id"
+                                 baseTableName="challenges"
+                                 constraintName="fk_challenges__progress_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="progress"/>
+
+        <addForeignKeyConstraint baseColumnNames="junk_food_id"
+                                 baseTableName="challenges"
+                                 constraintName="fk_challenges__junk_food_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="junk_food"/>
+
+        <addForeignKeyConstraint baseColumnNames="screen_time_id"
+                                 baseTableName="challenges"
+                                 constraintName="fk_challenges__screen_time_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="screen_time"/>
+
+        <addForeignKeyConstraint baseColumnNames="alcohol_id"
+                                 baseTableName="challenges"
+                                 constraintName="fk_challenges__alcohol_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="alcohol"/>
+
+        <addForeignKeyConstraint baseColumnNames="smoking_id"
+                                 baseTableName="challenges"
+                                 constraintName="fk_challenges__smoking_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="smoking"/>
+
+        <addForeignKeyConstraint baseColumnNames="challenges_id"
+                                 baseTableName="rel_challenges__search"
+                                 constraintName="fk_rel_challenges__search__challenges_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="challenges"/>
+
+        <addForeignKeyConstraint baseColumnNames="search_id"
+                                 baseTableName="rel_challenges__search"
+                                 constraintName="fk_rel_challenges__search__search_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="search"/>
+
+        <addForeignKeyConstraint baseColumnNames="challenges_id"
+                                 baseTableName="rel_challenges__filtered"
+                                 constraintName="fk_rel_challenges__filtered__challenges_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="challenges"/>
+
+        <addForeignKeyConstraint baseColumnNames="filtered_id"
+                                 baseTableName="rel_challenges__filtered"
+                                 constraintName="fk_rel_challenges__filtered__filtered_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="filtered"/>
+    </changeSet>
+</databaseChangeLog>

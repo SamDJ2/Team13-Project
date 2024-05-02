@@ -1,0 +1,499 @@
+@import 'vendor/bootstrap/css/bootstrap.min';
+@import 'assets/css/templatemo-cyborg-gaming';
+@import 'assets/css/fontawesome';
+
+.background-header {
+  background-color: #fff !important;
+  height: 70px !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0;
+  right: 0;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15) !important;
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+  display: none;
+}
+
+.header-area {
+  background-color: transparent;
+  position: absolute;
+  height: 70px;
+  top: 15px;
+  left: 0;
+  right: 10px;
+  z-index: 100;
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+
+.header-area .main-nav {
+  min-height: 80px;
+  background: transparent;
+  display: flex;
+  margin: 15px auto;
+  justify-content: space-between;
+}
+
+.background-header .main-nav {
+  padding: 0px;
+  background-color: transparent;
+}
+
+.light .header-area .main-nav .nav li a,
+.light .header-area .main-nav .logo img {
+  color: #1e1e1e;
+}
+
+.light .header-area .main-nav .nav li a:hover,
+.light .header-area .main-nav .nav li:last-child a:hover {
+  color: #555;
+  background-color: #e9ecef;
+}
+
+.light .theme-toggle-button {
+  background-color: #e2e6ea;
+  color: #495057;
+}
+
+.light .theme-toggle-button:hover {
+  background-color: #dae0e5;
+}
+
+.header-area .main-nav .logo {
+  border-right: 0px solid #27292a;
+  flex-basis: 10%;
+  margin-right: 5%;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  position: relative;
+  top: -25px;
+}
+
+.header-area .main-nav .logo img {
+  width: 100px;
+  height: 100px;
+  margin-left: 25px;
+}
+
+.background-header .main-nav .logo {
+  margin-top: 8px;
+}
+
+.background-header .main-nav .logo img {
+  width: 180px;
+}
+
+.header-area .main-nav .nav {
+  display: inline-flex;
+  flex-basis: 70%;
+  justify-content: center;
+  vertical-align: middle;
+  text-align: right;
+  margin-top: 0px;
+  margin-right: 30px;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  z-index: 999;
+}
+
+.header-area .main-nav .nav li {
+  padding: 0 1%;
+  display: inline-block;
+}
+
+.header-area .main-nav .nav li a {
+  display: block;
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: capitalize;
+  color: #b5b5b5;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  border: transparent;
+  padding: 13px 10px;
+  border-radius: 18px;
+  letter-spacing: 0.3px;
+}
+
+.header-area .main-nav .nav li:last-child a {
+  background-color: #27292a;
+  padding: 8px 10px 8px 20px;
+  border-radius: 23px;
+}
+
+.header-area .main-nav .nav li:last-child a img {
+  max-width: 30px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.header-area .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover,
+.background-header .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover {
+  padding-left: 25px !important;
+}
+
+.header-area .main-nav .nav li:hover a,
+.header-area .main-nav .nav li a.active {
+  color: #e86491 !important;
+}
+
+.header-area .main-nav .nav li:last-child:hover a,
+.header-area .main-nav .nav li:last-child a.active {
+  color: #fff !important;
+  background-color: #e86491 !important;
+}
+
+.background-header .main-nav .nav li:hover a,
+.background-header .main-nav .nav li a.active {
+  color: #fff;
+  opacity: 1;
+}
+
+.header-area .main-nav .nav li.has-sub {
+  position: relative;
+  padding-right: 15px;
+}
+
+.header-area .main-nav .menu-trigger {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  top: 23px;
+  width: 32px;
+  height: 40px;
+  text-indent: -9999em;
+  z-index: 99;
+  right: 20px;
+  display: none;
+}
+
+.profile-link img {
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.profile-link {
+  color: deeppink;
+}
+
+.background-header .main-nav .menu-trigger {
+  top: 17px;
+}
+
+.header-area .main-nav .menu-trigger span,
+.header-area .main-nav .menu-trigger span:before,
+.header-area .main-nav .menu-trigger span:after {
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  background-color: #e86491;
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  left: 0;
+}
+
+.background-header .main-nav .menu-trigger span,
+.background-header .main-nav .menu-trigger span:before,
+.background-header .main-nav .menu-trigger span:after {
+  background-color: #e86491;
+}
+
+.header-area .main-nav .menu-trigger span:before,
+.header-area .main-nav .menu-trigger span:after {
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  background-color: #e86491;
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  left: 0;
+  width: 75%;
+}
+
+.background-header .main-nav .menu-trigger span:before,
+.background-header .main-nav .menu-trigger span:after {
+  background-color: #e86491;
+}
+
+.header-area .main-nav .menu-trigger span:before,
+.header-area .main-nav .menu-trigger span:after {
+  content: '';
+}
+
+.header-area .main-nav .menu-trigger span {
+  top: 16px;
+}
+
+.header-area .main-nav .menu-trigger span:before {
+  -moz-transform-origin: 33% 100%;
+  -ms-transform-origin: 33% 100%;
+  -webkit-transform-origin: 33% 100%;
+  transform-origin: 33% 100%;
+  top: -10px;
+  z-index: 10;
+}
+
+.header-area .main-nav .menu-trigger span:after {
+  -moz-transform-origin: 33% 0;
+  -ms-transform-origin: 33% 0;
+  -webkit-transform-origin: 33% 0;
+  transform-origin: 33% 0;
+  top: 10px;
+}
+
+.header-area .main-nav .menu-trigger.active span,
+.header-area .main-nav .menu-trigger.active span:before,
+.header-area .main-nav .menu-trigger.active span:after {
+  background-color: transparent;
+  width: 100%;
+}
+
+.header-area .main-nav .menu-trigger.active span:before {
+  -moz-transform: translateY(6px) translateX(1px) rotate(45deg);
+  -ms-transform: translateY(6px) translateX(1px) rotate(45deg);
+  -webkit-transform: translateY(6px) translateX(1px) rotate(45deg);
+  transform: translateY(6px) translateX(1px) rotate(45deg);
+  background-color: #e86491;
+}
+
+.background-header .main-nav .menu-trigger.active span:before {
+  background-color: #e86491;
+}
+
+.header-area .main-nav .menu-trigger.active span:after {
+  -moz-transform: translateY(-6px) translateX(1px) rotate(-45deg);
+  -ms-transform: translateY(-6px) translateX(1px) rotate(-45deg);
+  -webkit-transform: translateY(-6px) translateX(1px) rotate(-45deg);
+  transform: translateY(-6px) translateX(1px) rotate(-45deg);
+  background-color: #e86491;
+}
+
+.background-header .main-nav .menu-trigger.active span:after {
+  background-color: #e86491;
+}
+
+.header-area.header-sticky {
+  min-height: 70px;
+}
+
+.header-area.header-sticky .nav li a.active {
+  color: #fff;
+}
+
+.light .header-area {
+  background-color: #f0f0f0;
+  color: #000000;
+}
+
+.light .header-area .main-nav .nav li a.profile-link {
+  color: #000;
+  background-color: white;
+}
+
+.light .header-area .main-nav .nav li a.profile-link:hover {
+  color: #555;
+}
+
+.light .header-area .main-nav .nav li a.profile-link img {
+  border: 1px solid #ddd;
+}
+
+html,
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #fff;
+  font-weight: 700;
+}
+
+body .page-content {
+  margin-top: 110px;
+  background-color: #27292a;
+  padding: 60px;
+  border-radius: 23px;
+}
+
+p {
+  font-size: 15px;
+  color: #666;
+  line-height: 30px;
+  margin-bottom: 0px;
+}
+footer p {
+  text-align: center;
+  padding: 30px 0px;
+  color: #fff;
+  font-weight: 300;
+}
+
+.form-input,
+.form-button {
+  width: 80%; /* Adjust width as needed */
+  margin: auto;
+  display: block;
+  border-radius: 25px; /* Rounded ends */
+  padding: 10px;
+  margin-bottom: 16px;
+}
+
+.form-input:hover,
+.form-button:hover {
+  box-shadow: 0 0 10px #fff; /* Glow effect on hover */
+}
+
+.form-button {
+  background-color: #222;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px; /* Adjust padding for better button sizing */
+}
+
+/* Ensuring the button text and icon are aligned properly */
+.form-button i {
+  margin-right: 5px;
+}
+
+/* Adjusting input field text color for better visibility */
+.form-input {
+  background-color: #555; /* Lighter shade for input background */
+  color: #fff; /* White text color */
+  border: 1px solid #666; /* Slight border */
+}
+
+/* Optional: Changing the placeholder color for better visibility */
+.form-input::placeholder {
+  color: #bbb;
+}
+
+.error-message {
+  margin-bottom: 10px;
+  color: red;
+  font-size: 0.8em;
+}
+
+$base-font-size: 16px; /* Adjusted base font size to 16px */
+
+.dynamic-text-size {
+  font-size: 100%; /* Default font size relative to parent element */
+}
+
+.dynamic-heading {
+  font-size: 150%; /* Default heading font size, adjusted relative to parent element */
+}
+
+.light {
+  .page-content {
+    background-color: #fff !important; // Ensure the background is white
+    color: #000 !important; // Ensure the text is black
+  }
+
+  background: #f0f0f0;
+  color: #000;
+  // Define more styles for the light theme as needed
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a {
+    color: #000; // Ensure all text elements are also explicitly set to black
+  }
+
+  a {
+    &:hover {
+      color: #555; // Lighter color for hover state, if desired
+    }
+  }
+
+  .heading-section h1 span {
+    color: #e75e8d !important; // Ensure pink color
+  }
+
+  .item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); // Darker shadow for light mode, adjust as necessary
+  }
+}
+
+.dark {
+  background: #1f2122;
+  color: #ccc;
+  // Define or adjust your existing dark theme styles as needed
+}
+
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.theme-toggle-button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle-button:hover {
+  background-color: #666;
+}
+
+.theme-toggle-button {
+  background: none; // No background
+  border: none; // No border
+  padding: 0; // No padding
+  cursor: pointer;
+  font-size: 35px; // Slightly larger icons, adjust as needed
+  line-height: 1;
+  display: flex; // Use flex to center the icon
+  justify-content: center; // Center horizontally
+  align-items: center; // Center vertically
+  height: 50px; // Explicit height for the button
+  width: 50px; // Explicit width for the button
+  margin-left: 10px; // Space from the scrollbar
+  margin-top: 0px; // Move away from the scrollbar by adding left margin, adjust as needed
+
+  &:hover {
+    color: #ccc; // Change color on hover
+  }
+
+  .fas {
+    // Directly target the icon for any specific styles
+    display: block; // Ensure the icon itself is a block to fill the button area
+    color: #ffcc00; // Set the icon color to yellow
+  }
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Purefy Support Page</title>
+  </head>
+  <body [ngClass]="theme">
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="active">Profile <img src="assets/images/profile-custom.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <!-- ***** Banner Start ***** -->
+            <div
+              class="font-size-slider-container"
+              style="display: flex; align-items: center; justify-content: flex-end; align-items: center; margin-top: -40px"
+            >
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 2px; margin-right: 5px"
+              />
+              <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="main-profile">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <img src="assets/images/support.jpg" alt="" style="border-radius: 23px" />
+                    </div>
+                    <div class="col-lg-4 align-self-center">
+                      <div class="main-info header-text">
+                        <h1>Purefy <em style="color: #e75e8d; font-style: italic; text-decoration: underline">Support</em></h1>
+                        <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                          Welcome to the Purefy Support Center. Understanding the challenges that come with dopamine detox, we want to
+                          ensure you have access to the right resources, especially when it comes to your health and well-being.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ***** Banner End ***** -->
+
+            <div class="most-popular">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="heading-section">
+                    <h4 style="margin: 0">
+                      <span style="color: white; text-decoration: underline">Immediate</span>
+                      <span style="color: #e75e8d">Assistance</span>
+                    </h4>
+                    <p
+                      [ngStyle]="{ color: theme === 'light' ? '#fff' : '#666' }"
+                      class="dynamic-text-size"
+                      [style.fontSize]="fontSizeMultiplier + 'rem'"
+                    >
+                      If you're experiencing severe distress or a medical emergency, please contact emergency services in your area
+                      immediately.
+                    </p>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                      <div class="item" style="text-align: center">
+                        <img src="assets/images/mental.jpg" alt="" />
+                        <h4>
+                          MENTAL HEALTH HELPLINE<br /><span
+                            >If you're feeling overwhelmed, anxious, or need someone to talk to about your mental health, please reach out
+                            to the Mental Health Helpline
+                            <a href="https://www.nhs.uk/nhs-services/mental-health-services/"
+                              >https://www.nhs.uk/nhs-services/mental-health-services/</a
+                            >
+                            for further queries.
+                          </span>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                      <div class="item" style="text-align: center">
+                        <img src="assets/images/recovery.jpg" alt="" />
+                        <h4>
+                          ADDICTION AND RECOVERY<br /><span
+                            >For support with addiction-related challenges, including digital or substance use, visit
+                            <a href="https://www.nhs.uk/live-well/addiction-support/drug-addiction-getting-help/"
+                              >https://www.nhs.uk/live-well/addiction-support/drug-addiction-getting-help/</a
+                            >
+                            to know more about support available.
+                          </span>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                      <div class="item" style="text-align: center; max-width: 100%">
+                        <img src="assets/images/edu.jpg" alt="" />
+                        <h4>
+                          EDUCATION AND WELLNESS<br /><span
+                            >To enhance your understanding of mental and emotional health, delve into topics such as mindfulness, stress
+                            management, and balanced digital consumption. Seek out to books and articles to foster a holistic approach.
+                          </span>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <!--Screen time end-->
+                    <div class="col-lg-3 col-sm-6">
+                      <div class="item" style="text-align: center; max-width: 100%">
+                        <img src="assets/images/wellbeing.jpg" alt="" />
+                        <h4>
+                          RESOURCES AND PUREFY TIPS<br /><span
+                            >Further your exploration of mental health by engaging with diverse resources. Explore areas like emotional
+                            resilience, cognitive balance, and wellbeing strategies. Pursue a range of literature and studies that encourage
+                            wellness.
+                          </span>
+                        </h4>
+                      </div>
+                    </div>
+                    <!--Coffee end-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ***** Most Popular End ***** -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

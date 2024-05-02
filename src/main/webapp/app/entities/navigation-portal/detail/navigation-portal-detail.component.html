@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="navigationPortal">
+      <h2 data-cy="navigationPortalDetailsHeading"><span>Navigation Portal</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ navigationPortal.id }}</span>
+        </dd>
+        <dt><span>Features</span></dt>
+        <dd>
+          <span>{{ navigationPortal.features }}</span>
+        </dd>
+        <dt><span>Selected Feature</span></dt>
+        <dd>
+          <span>{{ navigationPortal.selectedFeature }}</span>
+        </dd>
+        <dt><span>Challenges</span></dt>
+        <dd>
+          <div *ngIf="navigationPortal.challenges">
+            <a [routerLink]="['/challenges', navigationPortal.challenges.id, 'view']">{{ navigationPortal.challenges.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Habit</span></dt>
+        <dd>
+          <div *ngIf="navigationPortal.habit">
+            <a [routerLink]="['/habit', navigationPortal.habit.id, 'view']">{{ navigationPortal.habit.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Leader Boards</span></dt>
+        <dd>
+          <div *ngIf="navigationPortal.leaderBoards">
+            <a [routerLink]="['/leader-boards', navigationPortal.leaderBoards.id, 'view']">{{ navigationPortal.leaderBoards.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Profile Customization</span></dt>
+        <dd>
+          <div *ngIf="navigationPortal.profileCustomization">
+            <a [routerLink]="['/profile-customization', navigationPortal.profileCustomization.id, 'view']">{{
+              navigationPortal.profileCustomization.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span>Mood Journal Page</span></dt>
+        <dd>
+          <div *ngIf="navigationPortal.moodJournalPage">
+            <a [routerLink]="['/mood-journal-page', navigationPortal.moodJournalPage.id, 'view']">{{
+              navigationPortal.moodJournalPage.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/navigation-portal', navigationPortal.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

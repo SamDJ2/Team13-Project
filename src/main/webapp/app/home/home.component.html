@@ -1,0 +1,302 @@
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button w3-wide" style="margin-top: 5px">PUREFY</a>
+    <div class="w3-right w3-hide-small" style="margin-top: 10px">
+      <a href="#about-website" class="w3-bar-item w3-button" style="margin-right: 20px">ABOUT</a>
+      <a href="#team" class="w3-bar-item w3-button" style="margin-right: 20px"><i class="fa fa-user"></i> TEAM</a>
+      <a href="#work" class="w3-bar-item w3-button" style="margin-right: 20px"><i class="fa fa-th"></i> WORK</a>
+      <a href="#contact" class="w3-bar-item w3-button" style="margin-right: 20px"><i class="fa fa-envelope"></i> CONTACT</a>
+    </div>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" (click)="toggleSidebar()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display: none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+  <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button">WORK</a>
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+</nav>
+
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left" style="padding: 60px; color: white">
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br />
+    <span class="w3-large">Stop wasting valuable time on things that don't make you better.</span>
+    <p>
+      <a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">GET STARTED</a>
+    </p>
+  </div>
+  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding: 24px 48px">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+</header>
+
+<div class="challenges-container" id="about">
+  <h3 class="center">CHALLENGES TO OVERCOME</h3>
+  <p class="center large">Our Goal</p>
+  <div class="row-padding center" style="margin-top: 64px">
+    <!-- Smoking Challenge -->
+    <div class="quarter">
+      <a href="#smoking">
+        <div class="picture">
+          <img src="../../content/images/smoking.jpg" alt="Smoking" class="image" />
+        </div>
+      </a>
+      <p class="large">Smoking</p>
+      <p>
+        Overcoming smoking addiction is a significant challenge, but with our support and resources, you can take steps towards a smoke-free
+        life.
+      </p>
+    </div>
+
+    <!-- Screen Time Challenge -->
+    <div class="quarter">
+      <!-- Use (click) event binding to trigger a function when the image is clicked -->
+      <img src="../../content/images/screen3.jpg" alt="Screen Time" class="image" (click)="redirectToLevels()" />
+      <p class="large">Screen Time</p>
+      <p>Excessive screen time can impact your mental health. Discover healthier habits and find balance with our guidance.</p>
+    </div>
+
+    <!-- Drinking Challenge -->
+    <div class="quarter">
+      <a href="#drinking">
+        <img src="../../content/images/ddrinks.jpg" alt="Drinking" class="image" />
+      </a>
+      <p class="large">Drinking</p>
+      <p>Reducing alcohol consumption can improve your overall well-being. Let us help you navigate this journey towards moderation.</p>
+    </div>
+
+    <!-- Junk Food Challenge -->
+    <div class="quarter">
+      <a href="#junk-food">
+        <img src="../../content/images/foood.jpg" alt="Junk Food" class="image" />
+      </a>
+      <p class="large">Junk Food</p>
+      <p>
+        Breaking free from junk food cravings is a journey towards better nutrition and overall health. Let's take the first step together.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="screen-time">
+  <!-- Content of the Screen Time section goes here -->
+  <div class="w3-container" style="padding: 90px 16px" id="about">
+    <h3 class="w3-center">SELECT YOUR LEVEL</h3>
+    <p class="w3-center w3-large">Do what you desire for yourself</p>
+    <div class="row-padding w3-center" style="margin-top: 64px">
+      <!-- Adjusted class to row-padding -->
+      <div class="quarter">
+        <!-- Kept as quarter for consistency -->
+        <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+        <p class="w3-large">BEGINNER</p>
+        <p>New to dopamine detox? Ready to ease into your journey with simple steps?</p>
+      </div>
+      <div class="quarter">
+        <!-- Kept as quarter for consistency -->
+        <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">INTERMEDIATE</p>
+        <p>Feeling more confident? Want to deepen your detox with a bit more challenge?</p>
+      </div>
+      <div class="quarter">
+        <!-- Kept as quarter for consistency -->
+        <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">ADVANCED</p>
+        <p>Ready to challenge your limits and push your detox journey further?</p>
+      </div>
+      <div class="quarter">
+        <!-- Kept as quarter for consistency -->
+        <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">EXPERT</p>
+        <p>Are you committed to mastering your detox? Ready for the ultimate challenge?</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- About Section -->
+<div class="w3-container" style="padding: 64px 16px" id="about-website">
+  <h3 class="w3-center">ABOUT THE WEBSITE</h3>
+  <p class="w3-center w3-large">Our Ambition</p>
+  <div class="row-padding w3-center" style="margin-top: 64px">
+    <!-- Adjusted class to row-padding -->
+    <div class="quarter">
+      <!-- Kept as quarter for consistency -->
+      <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+      <p class="w3-large">Responsive</p>
+      <p>
+        Whether you're taking a break from your smartphone or unwinding at your desktop after a dopamine detox session, our website
+        seamlessly adjusts to support your journey. Wherever you are in your detox, we're here to provide the perfect experience for you.
+      </p>
+    </div>
+    <div class="quarter">
+      <!-- Kept as quarter for consistency -->
+      <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Passion</p>
+      <p>
+        Every feature, every update, and every interaction is infused with our dedication to your mental well-being. When you join us,
+        you're joining a community driven by the shared desire to thrive in a world overflowing with stimuli.
+      </p>
+    </div>
+    <div class="quarter">
+      <!-- Kept as quarter for consistency -->
+      <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Design</p>
+      <p>
+        Our design philosophy is simple: clarity, calmness, and control. We've carefully crafted every aspect of our app to support your
+        dopamine detox journey.
+      </p>
+    </div>
+    <div class="quarter">
+      <!-- Kept as quarter for consistency -->
+      <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Support</p>
+      <p>
+        Your dopamine detox journey is unique, and we're here to support you every step of the way. Whether you have questions about the
+        detox process, need tips for managing cravings, or just want to share your progress, we're here to listen, guide, and empower you.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Team Section -->
+<!-- Team Section -->
+<div class="w3-container team-container" id="team">
+  <h3 class="w3-center">THE TEAM</h3>
+  <p class="w3-center w3-large">The people behind your motivational journey</p>
+
+  <!-- First Row for first four members -->
+  <div class="w3-row-padding" style="margin-top: 64px">
+    <ng-container *ngFor="let member of teamMembers; let i = index">
+      <div *ngIf="i < 4" class="w3-col l3 m6 w3-margin-bottom">
+        <div class="flip-card w3-card" (click)="toggleFlip(member.id)">
+          <div class="flip-card-inner" [class.flipped]="member.flipped">
+            <div class="flip-card-front w3-container">
+              <h3>{{ member.name }}</h3>
+              <p class="w3-opacity">{{ member.role }}</p>
+              <p>{{ member.description }}</p>
+            </div>
+            <div class="flip-card-back w3-container">
+              <h3>Why this concept?</h3>
+              <p>{{ member.reason }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Second Row for last two members -->
+  <div class="w3-row-padding" style="margin-top: 64px">
+    <ng-container *ngFor="let member of teamMembers; let i = index">
+      <div *ngIf="i >= 4" class="w3-col l3 m6 w3-margin-bottom">
+        <div class="flip-card w3-card" (click)="toggleFlip(member.id)">
+          <div class="flip-card-inner" [class.flipped]="member.flipped">
+            <div class="flip-card-front w3-container">
+              <h3>{{ member.name }}</h3>
+              <p class="w3-opacity">{{ member.role }}</p>
+              <p>{{ member.description }}</p>
+            </div>
+            <div class="flip-card-back w3-container">
+              <h3>Why this concept?</h3>
+              <p>{{ member.reason }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- Work Section -->
+<div class="w3-container" style="padding: 64px 16px" id="work">
+  <h3 class="w3-center">OUR WORK</h3>
+  <p class="w3-center w3-large">What our website can do for people</p>
+  <div class="w3-row-padding" style="margin-top: 64px">
+    <!-- Use work.image and work.description -->
+    <div class="centered-content">
+      <p>
+        Our website serves as a comprehensive portal for those embarking on a dopamine detox journey, aiming to mitigate the overwhelming
+        effects of constant digital stimulation. It's crafted with the intent to help users break free from the cycle of short-term
+        pleasure-seeking behaviors, fostering long-term satisfaction and mental clarity. With an extensive library of scientifically-backed
+        resources, interactive challenges, and a supportive community, the platform offers a holistic approach to detoxification from
+        excessive screen time, social media, unhealthy eating habits, and other forms of instant gratification.
+      </p>
+
+      <p>
+        Key features include personalized detox plans tailored to individual needs, progress tracking tools, and expert-led workshops and
+        webinars that delve into the science of dopamine and its impact on our lives. The website also encourages participation in a variety
+        of challenges designed to replace unhealthy habits with positive alternatives, promoting physical activity, mindfulness practices,
+        creative pursuits, and meaningful social interactions.
+      </p>
+
+      <p>
+        In addition to practical resources, our platform fosters a supportive environment where users can share their experiences,
+        successes, and challenges, creating a sense of community and belonging. Regularly updated blog posts, success stories, and expert
+        insights keep the content fresh and engaging, ensuring users have access to the latest research and motivational stories.
+      </p>
+
+      <p>
+        By focusing on the root causes of digital overconsumption and providing actionable solutions, our website aims to empower
+        individuals to lead more balanced, fulfilling lives in an increasingly digital world. Whether you're just starting out or are well
+        on your detox journey, our platform is designed to support, educate, and inspire you every step of the way towards achieving digital
+        well-being and a healthier lifestyle.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for full-size images on click -->
+<div id="modal01" class="w3-modal w3-black" (click)="closeModal()">
+  <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <!-- Use selectedImage and selectedCaption -->
+    <img [src]="selectedImage" class="w3-image" />
+    <p id="caption" class="w3-opacity w3-large">{{ selectedCaption }}</p>
+  </div>
+</div>
+
+<div class="w3-container w3-light-grey" style="padding: 64px 16px" id="contact">
+  <h3 class="w3-center">CONTACT</h3>
+  <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+  <div style="margin-top: 48px">
+    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Birmingham, United Kingdom</p>
+    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +44 7654896543</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: purefywithus@gmail.com</p>
+    <br />
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+      <p><input class="w3-input w3-border" type="text" placeholder="Name" required [(ngModel)]="contact.name" name="name" /></p>
+      <p><input class="w3-input w3-border" type="email" placeholder="Email" required [(ngModel)]="contact.email" name="email" /></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Subject" required [(ngModel)]="contact.subject" name="subject" /></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Message" required [(ngModel)]="contact.message" name="message" /></p>
+      <p>
+        <button class="w3-button w3-black" type="submit" [disabled]="contactForm.invalid">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </p>
+    </form>
+
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-64">
+      <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i> To the top</a>
+      <div class="w3-xlarge w3-section">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+      </div>
+      <p>Copyright © 2024, Purefy! All Rights Reserved.</p>
+      <a href="https://drive.google.com/file/d/1EDIZLTEun9su850H0xyuYWmnClQG-2xg/view?usp=sharing">Find Team 13's GDPR here.</a>
+    </footer>
+  </div>
+</div>

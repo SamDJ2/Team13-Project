@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity ScreenTime.
+    -->
+    <changeSet id="20240305141209-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="video_games_id"
+                                 baseTableName="screen_time"
+                                 constraintName="fk_screen_time__video_games_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="video_games"/>
+
+        <addForeignKeyConstraint baseColumnNames="movies_id"
+                                 baseTableName="screen_time"
+                                 constraintName="fk_screen_time__movies_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="movies"/>
+
+        <addForeignKeyConstraint baseColumnNames="social_media_id"
+                                 baseTableName="screen_time"
+                                 constraintName="fk_screen_time__social_media_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="social_media"/>
+
+        <addForeignKeyConstraint baseColumnNames="music_id"
+                                 baseTableName="screen_time"
+                                 constraintName="fk_screen_time__music_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="music"/>
+    </changeSet>
+</databaseChangeLog>

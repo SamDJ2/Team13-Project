@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <title>Junk Food Start</title>
+  </head>
+
+  <body [ngClass]="theme">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index" class="active">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div [ngSwitch]="currentState">
+      <div *ngSwitchCase="'state1'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Junk Food</h2>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 1</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h5><em>A Nice Way To Start.</em></h5>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Junk Food For A Day.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Commit to not eating junk food for the entire day. This short-term goal is a great way to kickstart a
+                              healthier eating pattern, reducing your intake of high-calorie, low-nutrient foods. Focus on nourishing your
+                              body with whole foods like fruits, vegetables, lean proteins, and whole grains. Notice how you feel at the end
+                              of the day—more energized, perhaps, or less bloated. Let this experience inspire you to make healthier food
+                              choices moving forward.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('F1')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('F1', 24, 'Junk Food', '1'); $event.preventDefault(); sendPoints(1)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('F1')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['F1'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'F1',
+                                        'Junk Food (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '1'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(1)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state2'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Junk Food</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 2</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are good at self control?</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Junk Food For A Week.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Challenge yourself to avoid junk food for an entire week. This week-long period allows your body to adjust to
+                              a diet without heavily processed foods, potentially leading to noticeable benefits such as improved energy
+                              levels and better digestion. Plan your meals and snacks ahead of time to avoid the temptation of convenience
+                              foods, and discover new, healthy recipes that excite your taste buds. Reflect on the impact of this change on
+                              your physical and mental well-being by the week’s end.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('F2')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('F2', 168, 'Junk Food', '2'); $event.preventDefault(); sendPoints(1)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('F2')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['F2'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'F2',
+                                        'Junk Food (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '2'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(2)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state3'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Junk Food</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 3</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are almost there.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No junk Food For 2 Weeks.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Extend your commitment to not consuming junk food to two weeks. This timeframe encourages deeper habits of
+                              mindful eating and gives you the chance to fully experience the positive effects of a diet free from processed
+                              foods. You might notice significant changes in your cravings, a decrease in sugar dependence, and even weight
+                              loss. Use this period to explore a broader variety of healthy foods and cooking methods, solidifying your
+                              preference for nutritious choices.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('F3')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('F3', 336, 'Junk Food', '3'); $event.preventDefault(); sendPoints(3)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('F3')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['F3'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'F3',
+                                        'Junk Food (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '3'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(3)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state4'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Junk Food</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 4</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>Time to shine.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Junk Food For A Month!</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Embark on a month-long journey to eliminate junk food from your diet. This longer commitment can transform
+                              your relationship with food, leading to sustainable healthy eating habits. Over the course of a month, your
+                              taste preferences can adjust to favor natural flavors over artificial ones, making whole foods more appealing.
+                              This period also offers ample time to explore how dietary changes affect your mood, energy, and overall
+                              health. Celebrate your achievements throughout the month, and consider incorporating these healthier choices
+                              into your lifestyle permanently.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('F4')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('F4', 720, 'Junk Food', '4'); $event.preventDefault(); sendPoints(4)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('F4')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['F4'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'F4',
+                                        'Junk Food (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '4'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(4)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

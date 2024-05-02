@@ -1,0 +1,67 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141229",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "navigation_portal",
+  "fields": [
+    {
+      "fieldName": "features",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "selectedFeature",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "NavigationPortal",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "challenges",
+      "otherEntityRelationshipName": "navigationPortal",
+      "ownerSide": true,
+      "relationshipName": "challenges",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "habit",
+      "otherEntityRelationshipName": "navigationPortal",
+      "ownerSide": true,
+      "relationshipName": "habit",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "leaderBoards",
+      "otherEntityRelationshipName": "navigationPortal",
+      "ownerSide": true,
+      "relationshipName": "leaderBoards",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "profileCustomization",
+      "otherEntityRelationshipName": "navigationPortal",
+      "ownerSide": true,
+      "relationshipName": "profileCustomization",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "moodJournalPage",
+      "otherEntityRelationshipName": "navigationPortal",
+      "ownerSide": true,
+      "relationshipName": "moodJournalPage",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "moodPicker",
+      "otherEntityRelationshipName": "navigationPortal",
+      "ownerSide": false,
+      "relationshipName": "moodPicker",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

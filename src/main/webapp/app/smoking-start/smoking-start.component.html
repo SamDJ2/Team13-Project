@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <title>Junk Food Start</title>
+  </head>
+
+  <body [ngClass]="theme">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index" class="active">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div [ngSwitch]="currentState">
+      <div *ngSwitchCase="'state1'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Smoking</h2>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 1</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h5><em>A Nice Way To Start.</em></h5>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Smoking For 12 Hours.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Set your goal to abstain from smoking for the next 12 hours. This brief period serves as an initial step
+                              towards reducing your reliance on cigarettes. Use this time to focus on the immediate benefits such as fresher
+                              breath, a clearer throat, and the start of detoxification in your body. Consider engaging in activities that
+                              distract from the urge to smoke, like short walks, chewing gum, or deep breathing exercises. This challenge
+                              can also offer insights into your smoking triggers and how to counteract them in the future.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('S1')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('S1', 12, 'Smoking', '1'); $event.preventDefault(); sendPoints(1)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('S1')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['S1'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'S1',
+                                        'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '1'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(1)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state2'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Smoking</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 2</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are good at self control?</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Smoking for A Day.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Challenge yourself to go without smoking for an entire day. Twenty-four hours smoke-free can significantly
+                              benefit your heart rate and blood pressure, beginning to reduce the risks associated with smoking. Prepare
+                              strategies in advance for dealing with cravings, such as keeping your hands busy, staying hydrated, or using
+                              nicotine replacement therapies if necessary. Reflect on how you feel physically and mentally without
+                              cigarettes for a day, using these observations as motivation to extend smoke-free periods.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('S2')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('S2', 24, 'Smoking', '2'); $event.preventDefault(); sendPoints(2)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('S2')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['S2'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'S2',
+                                        'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '2'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(2)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state3'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Smoking</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 3</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are almost there.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Smoking For 2 Days.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Extend your no-smoking goal to 48 hours. After two days without cigarettes, your body will continue to clear
+                              carbon monoxide from your system, and your lungs will begin to clear out mucus and other smoking debris.
+                              Notice any improvements in your senses, such as taste and smell, starting to return. Use this time to explore
+                              further strategies for coping with cravings and consider reaching out to support groups or resources designed
+                              to help individuals quit smoking.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('S3')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('S3', 48, 'Smoking', '3'); $event.preventDefault(); sendPoints(3)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('S3')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['S3'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'S3',
+                                        'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '3'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(3)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state4'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Smoking</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 4</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>Time to shine.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Smoking For A Week!</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Aim to be smoke-free for an entire week. A week without smoking marks significant progress towards breaking
+                              the habit and allows your body to undergo more noticeable healing. Your lung function begins to improve during
+                              this time, and you may find breathing easier. The achievement of reaching a week can significantly boost your
+                              confidence and determination to quit for good. Reflect on the benefits you've noticed, both physically and
+                              emotionally, and plan for continuing your journey towards a smoke-free life.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('S4')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('S4', 336, 'Smoking', '4'); $event.preventDefault(); sendPoints(4)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('S4')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['S4'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'S4',
+                                        'Smoking (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '4'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(4)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

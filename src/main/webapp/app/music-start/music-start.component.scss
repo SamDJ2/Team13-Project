@@ -1,0 +1,115 @@
+@import 'vendor/bootstrap/css/bootstrap.min';
+@import 'assets/css/fontawesome';
+@import 'assets/css/templatemo-cyborg-gaming';
+
+.light {
+  background: #f0f0f0;
+  color: #000;
+
+  .page-content {
+    background-color: #fff !important; // Ensure the background is white
+    color: #000 !important; // Ensure the text is black
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    a,
+    span,
+    em,
+    .dynamic-text-size,
+    .dynamic-heading,
+    .text-container {
+      color: #000 !important; // Ensures all text elements are also explicitly set to black
+    }
+
+    a {
+      color: #e75e8d !important; // Links in pink
+      &:hover {
+        color: darken(#e75e8d, 10%) !important; // Pink hover effect
+      }
+    }
+
+    .most-popular .item {
+      background-color: darkgrey;
+      padding: 30px 15px;
+      border-radius: 23px;
+      margin-bottom: 30px;
+    }
+
+    .heading-section h4 span:not(.text-decoration-underline) {
+      color: #e75e8d !important; // Non-underline span in pink
+    }
+
+    .heading-section h4 span.text-decoration-underline {
+      text-decoration: underline;
+      color: #fff !important; // Underlined span in white
+    }
+  }
+  html,
+  body {
+    background: #f0f0f0;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+.dark {
+  background: #1f2122;
+  color: #ccc;
+}
+
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.theme-toggle-button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle-button:hover {
+  background-color: #666;
+}
+
+.theme-toggle-button {
+  background: none; // No background
+  border: none; // No border
+  padding: 0; // No padding
+  cursor: pointer;
+  font-size: 35px; // Slightly larger icons, adjust as needed
+  line-height: 1;
+  display: flex; // Use flex to center the icon
+  justify-content: center; // Center horizontally
+  align-items: center; // Center vertically
+  height: 50px; // Explicit height for the button
+  width: 50px; // Explicit width for the button
+  margin-left: 10px; // Space from the scrollbar
+  margin-top: 0px; // Move away from the scrollbar by adding left margin, adjust as needed
+
+  &:hover {
+    color: #ccc; // Change color on hover
+  }
+
+  .fas {
+    // Directly target the icon for any specific styles
+    display: block; // Ensure the icon itself is a block to fill the button area
+    color: #ffcc00; // Set the icon color to yellow
+  }
+}
+.asa {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 0 10px;
+}

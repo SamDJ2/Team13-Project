@@ -1,0 +1,56 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141236",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "user_db",
+  "fields": [
+    {
+      "fieldName": "userID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "profilePicture",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "userName",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UserDB",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "landingPage",
+      "otherEntityRelationshipName": "userDB",
+      "ownerSide": true,
+      "relationshipName": "landingPage",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "progress",
+      "otherEntityRelationshipName": "userDB",
+      "ownerSide": true,
+      "relationshipName": "progress",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,11 @@
+id;notifications_enabled;account_deletion_requested;change_password
+1;true;true;true
+2;true;true;true
+3;false;true;true
+4;true;true;true
+5;true;true;false
+6;false;true;false
+7;true;true;true
+8;false;false;true
+9;false;false;true
+10;true;true;false

@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141218",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "achievement",
+  "fields": [
+    {
+      "fieldName": "achievementID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateEarned",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "achievementType",
+      "fieldType": "AchievementType",
+      "fieldValues": "All_Time_Best,Monthly_Top,Weekly_Star"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Achievement",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "profileCustomization",
+      "otherEntityRelationshipName": "achievement",
+      "ownerSide": false,
+      "relationshipName": "profileCustomization",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

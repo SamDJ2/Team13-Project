@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <title>Alcohol Levels</title>
+  </head>
+
+  <body [ngClass]="theme">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index" class="active">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 2px; margin-right: 5px"
+              />
+              <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
+            <!-- ***** Featured Challenge Start ***** -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="featured-games header-text" [ngClass]="theme">
+                  <div class="heading-section">
+                    <h4><em>All</em> Levels (Junk Food)</h4>
+                  </div>
+                  <div class="owl-features owl-carousel">
+                    <!-- ***** Level 1 ***** -->
+                    <div class="item">
+                      <div class="thumb">
+                        <img
+                          src="assets/images/ezgif-3-ff7c873609.jpg"
+                          aria-label="Navigate to state 1"
+                          (click)="navigateToTarget('state1')"
+                          (keyup)="handleKeyup($event, 'state1')"
+                          tabindex="0"
+                          role="button"
+                        />
+                        <div class="hover-effect">
+                          <h6 (click)="navigateToTarget('state1')">Start</h6>
+                        </div>
+                      </div>
+                      <h4>
+                        Beginner<br /><span class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'"
+                          >A nice way to start.</span
+                        >
+                      </h4>
+                    </div>
+                    <!--**Level 1 End**-->
+
+                    <!--Level 2-->
+                    <div class="item">
+                      <div class="thumb">
+                        <img
+                          src="assets/images/ezgif-3-5800aa8b9e.jpg"
+                          aria-label="Navigate to state 2"
+                          (click)="navigateToTarget('state2')"
+                          (keyup)="handleKeyup($event, 'state2')"
+                          tabindex="0"
+                          role="button"
+                        />
+                        <div class="hover-effect">
+                          <h6 (click)="navigateToTarget('state2')">Start</h6>
+                        </div>
+                      </div>
+                      <h4>
+                        Amateur<br /><span class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'"
+                          >You are good at self control?</span
+                        >
+                      </h4>
+                    </div>
+                    <!--Level 2 End-->
+
+                    <!--Level 3-->
+                    <div class="item">
+                      <div class="thumb">
+                        <img
+                          src="assets/images/ezgif-3-889b0f5a8d.jpg"
+                          aria-label="Navigate to state 3"
+                          (click)="navigateToTarget('state3')"
+                          (keyup)="handleKeyup($event, 'state3')"
+                          tabindex="0"
+                          role="button"
+                        />
+                        <div class="hover-effect">
+                          <h6 (click)="navigateToTarget('state3')">Start</h6>
+                        </div>
+                      </div>
+                      <h4>
+                        Intermediate<br /><span class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'"
+                          >You are almost there.</span
+                        >
+                      </h4>
+                    </div>
+                    <!--Level 3-->
+
+                    <div class="item">
+                      <div class="thumb">
+                        <img
+                          src="assets/images/ezgif-3-040872034a.jpg"
+                          aria-label="Navigate to state 4"
+                          (click)="navigateToTarget('state4')"
+                          (keyup)="handleKeyup($event, 'state4')"
+                          tabindex="0"
+                          role="button"
+                        />
+                        <div class="hover-effect">
+                          <h6 (click)="navigateToTarget('state4')">Start</h6>
+                        </div>
+                      </div>
+                      <h4>
+                        Legendary<br /><span class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">Time to shine.</span>
+                      </h4>
+                    </div>
+
+                    <!-- ***** Level 1 ***** -->
+                    <div class="item">
+                      <div class="thumb">
+                        <img
+                          src="assets/images/ezgif-3-ff7c873609.jpg"
+                          aria-label="Navigate to state 1"
+                          (click)="navigateToTarget('state1')"
+                          (keyup)="handleKeyup($event, 'state1')"
+                          tabindex="0"
+                          role="button"
+                        />
+                        <div class="hover-effect">
+                          <h6 (click)="navigateToTarget('state1')">Start</h6>
+                        </div>
+                      </div>
+                      <h4>
+                        Beginner<br /><span class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'"
+                          >A nice way to start.</span
+                        >
+                      </h4>
+                    </div>
+                    <!--**Level 1 End**-->
+
+                    <!--Level 2-->
+                    <div class="item">
+                      <div class="thumb">
+                        <img
+                          src="assets/images/ezgif-3-5800aa8b9e.jpg"
+                          aria-label="Navigate to state 2"
+                          (click)="navigateToTarget('state2')"
+                          (keyup)="handleKeyup($event, 'state2')"
+                          tabindex="0"
+                          role="button"
+                        />
+                        <div class="hover-effect">
+                          <h6 (click)="navigateToTarget('state2')">Start</h6>
+                        </div>
+                      </div>
+                      <h4>
+                        Amateur<br /><span class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'"
+                          >You are good at self control?</span
+                        >
+                      </h4>
+                    </div>
+                    <!--Level 2 End-->
+
+                    <!--Level 3-->
+                    <div class="item">
+                      <div class="thumb">
+                        <img
+                          src="assets/images/ezgif-3-889b0f5a8d.jpg"
+                          aria-label="Navigate to state 3"
+                          (click)="navigateToTarget('state3')"
+                          (keyup)="handleKeyup($event, 'state3')"
+                          tabindex="0"
+                          role="button"
+                        />
+                        <div class="hover-effect">
+                          <h6 (click)="navigateToTarget('state3')">Start</h6>
+                        </div>
+                      </div>
+                      <h4>
+                        Intermediate<br /><span class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'"
+                          >You are almost there.</span
+                        >
+                      </h4>
+                    </div>
+                    <!--Level 3-->
+
+                    <div class="item">
+                      <div class="thumb">
+                        <img
+                          src="assets/images/ezgif-3-040872034a.jpg"
+                          aria-label="Navigate to state 4"
+                          (click)="navigateToTarget('state4')"
+                          (keyup)="handleKeyup($event, 'state4')"
+                          tabindex="0"
+                          role="button"
+                        />
+                        <div class="hover-effect">
+                          <h6 (click)="navigateToTarget('state4')">Start</h6>
+                        </div>
+                      </div>
+                      <h4>
+                        Legendary<br /><span class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">Time to shine.</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ***** Featured Challenge End ***** -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

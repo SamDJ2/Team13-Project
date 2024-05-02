@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="leaderBoards">
+      <h2 data-cy="leaderBoardsDetailsHeading"><span>Leader Boards</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ leaderBoards.id }}</span>
+        </dd>
+        <dt><span>Standings</span></dt>
+        <dd>
+          <span>{{ leaderBoards.standings }}</span>
+        </dd>
+        <dt><span>Grouping</span></dt>
+        <dd>
+          <div *ngIf="leaderBoards.grouping">
+            <a [routerLink]="['/grouping', leaderBoards.grouping.id, 'view']">{{ leaderBoards.grouping.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Progress</span></dt>
+        <dd>
+          <div *ngIf="leaderBoards.progress">
+            <a [routerLink]="['/progress', leaderBoards.progress.id, 'view']">{{ leaderBoards.progress.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/leader-boards', leaderBoards.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

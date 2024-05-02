@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141235",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "landing_page",
+  "fields": [
+    {
+      "fieldName": "getStarted",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "about",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "team",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "contact",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "LandingPage",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "moodPicker",
+      "otherEntityRelationshipName": "landingPage",
+      "ownerSide": true,
+      "relationshipName": "moodPicker",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "userDB",
+      "otherEntityRelationshipName": "landingPage",
+      "ownerSide": false,
+      "relationshipName": "userDB",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

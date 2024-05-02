@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Our Team</title>
+  </head>
+  <body [ngClass]="theme">
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px; margin-left: 120px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="active">Profile <img src="assets/images/profile-custom.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <!-- ***** Banner Start ***** -->
+            <div
+              class="font-size-slider-container"
+              style="display: flex; align-items: center; justify-content: flex-end; align-items: center; margin-top: -40px"
+            >
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 2px; margin-right: 5px"
+              />
+              <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="main-profile">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <img src="assets/images/team.jpg" alt="" style="border-radius: 23px" />
+                    </div>
+                    <div class="col-lg-4 align-self-center">
+                      <div class="main-info header-text">
+                        <h1 style="margin-left: 10px; margin-bottom: 30px; margin-bottom: 10px">
+                          Our <em style="color: #e75e8d; font-style: italic; text-decoration: underline">Team</em>
+                        </h1>
+                        <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'" style="margin-left: -10px">
+                          Purefy: Crafting a digital oasis for mindful living. Our team pioneers dopamine detox solutions, guiding users
+                          towards a balanced relationship with technology. We empower individuals to reclaim their lives, one mindful moment
+                          at a time.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ***** Banner End ***** -->
+
+            <div class="most-popular">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="heading-section">
+                    <h4 style="margin: 0">
+                      <span style="color: white; text-decoration: underline">Get to know</span>
+                      <span style="color: #e75e8d">Us!</span>
+                    </h4>
+                    <p
+                      [ngStyle]="{ color: theme === 'light' ? '#fff' : '#666' }"
+                      class="dynamic-text-size"
+                      [style.fontSize]="fontSizeMultiplier + 'rem'"
+                    >
+                      We understand what it's like to struggle with always wanting more dopamine hits. We're here to help you deal with that
+                      too.
+                    </p>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                      <div class="item" style="text-align: center">
+                        <img src="assets/images/girl.jpg" alt="" />
+                        <h4>
+                          PROFILE CUSTOMIZATION: ANKITA DASH<br /><span
+                            >I'm the profile customization developer, encoding features that enable users to personalize their online
+                            presence. I want to provide practical solution to help individuals improve their mental health.
+                          </span>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                      <div class="item" style="text-align: center">
+                        <img src="assets/images/boy2.jpg" alt="" />
+                        <h4>
+                          CHALLENGES: ASA BIZANJO<br /><span
+                            >I'm spearheading our Challenges feature, meticulously curating engaging tasks to motivate users to quit bad
+                            habits. It's centered on fostering a community where individuals discover the inspiration they need to grow.
+                          </span>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                      <div class="item" style="text-align: center; max-width: 100%">
+                        <img src="assets/images/boy3.jpg" alt="" />
+                        <h4>
+                          MOOD JOURNAL: PRINCE ALEXANDER<br /><span
+                            >I'm spearheading the development of our Mood Journal feature, enabling users to track their emotional journey.
+                            This tool counters the negative impacts of excessive digital usage and provides prompts to go about your day.
+                          </span>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <!--Screen time end-->
+                    <div class="col-lg-3 col-sm-6">
+                      <div class="item" style="text-align: center; max-width: 100%">
+                        <img src="assets/images/boy8.jpg" alt="" />
+                        <h4>
+                          LEADERBOARD: SAMUEL DAVIES<br /><span
+                            >I thrive in collaborative situations and am dedicated to creating the Groups feature for a better digital
+                            experience along with peers to showcase the impact of reducing unnecessary stimuli and help them grow.
+                          </span>
+                        </h4>
+                      </div>
+                    </div>
+                    <div class="row" style="display: flex; justify-content: center">
+                      <div class="col-lg-3 col-sm-6" style="max-width: 100%">
+                        <div class="item" style="text-align: center">
+                          <img src="assets/images/boy6.jpg" alt="" />
+                          <h4>
+                            MOOD PICKER: ADNAAN LOONAT<br />
+                            <span
+                              >I'm aiming to create a tool that allows users to express and track their emotions in an interactive way. I
+                              want to create a space where individuals can find peace, learn to accept mistakes, not give up and achieve a
+                              better way of life.
+                            </span>
+                          </h4>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-sm-6" style="max-width: 100%">
+                        <div class="item" style="text-align: center">
+                          <img src="assets/images/boy5.jpg" alt="" />
+                          <h4>
+                            HABIT TRACKER: ALLEN JOSEPH<br />
+                            <span
+                              >I'm driving the development of our Habit Tracker feature, guiding users in fostering positive routines and
+                              behaviors consistently. This initiative aims to shed light on how digital habits can disrupt our natural
+                              reward system and our well-being.
+                            </span>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'" style="margin-left: 50px">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

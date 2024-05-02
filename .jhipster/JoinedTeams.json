@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141220",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "joined_teams",
+  "fields": [
+    {
+      "fieldName": "teamID",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "memberSince",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "JoinedTeams",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "profileCustomization",
+      "otherEntityRelationshipName": "joinedTeams",
+      "ownerSide": false,
+      "relationshipName": "profileCustomization",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

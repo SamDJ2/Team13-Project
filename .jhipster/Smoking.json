@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141211",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "smoking",
+  "fields": [
+    {
+      "fieldName": "levels",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "progress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "timer",
+      "fieldType": "Duration"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Smoking",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "challenges",
+      "otherEntityRelationshipName": "smoking",
+      "relationshipName": "challenges",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,42 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141222",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "new_weekly_habit_tracker",
+  "fields": [
+    {
+      "fieldName": "recordID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "habitCompletion",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "NewWeeklyHabitTracker",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "weeklySummary",
+      "otherEntityRelationshipName": "newWeeklyHabitTracker",
+      "ownerSide": true,
+      "relationshipName": "weeklySummary",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "habit",
+      "otherEntityRelationshipName": "newWeeklyHabitTracker",
+      "relationshipName": "habit",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

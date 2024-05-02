@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-user-points-heading" data-cy="UserPointsCreateUpdateHeading">Create or edit a User Points</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_userID">User ID</label>
+          <input type="number" class="form-control" name="userID" id="field_userID" data-cy="userID" formControlName="userID" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_currentPoints">Current Points</label>
+          <input
+            type="number"
+            class="form-control"
+            name="currentPoints"
+            id="field_currentPoints"
+            data-cy="currentPoints"
+            formControlName="currentPoints"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_previousPoints">Previous Points</label>
+          <input
+            type="number"
+            class="form-control"
+            name="previousPoints"
+            id="field_previousPoints"
+            data-cy="previousPoints"
+            formControlName="previousPoints"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_totalPoints">Total Points</label>
+          <input
+            type="number"
+            class="form-control"
+            name="totalPoints"
+            id="field_totalPoints"
+            data-cy="totalPoints"
+            formControlName="totalPoints"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_leaderBoards">Leader Boards</label>
+          <select
+            class="form-control"
+            id="field_leaderBoards"
+            data-cy="leaderBoards"
+            name="leaderBoards"
+            formControlName="leaderBoards"
+            [compareWith]="compareLeaderBoards"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="leaderBoardsOption" *ngFor="let leaderBoardsOption of leaderBoardsSharedCollection">
+              {{ leaderBoardsOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

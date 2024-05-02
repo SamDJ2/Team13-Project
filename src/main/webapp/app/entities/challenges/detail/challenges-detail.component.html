@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="challenges">
+      <h2 data-cy="challengesDetailsHeading"><span>Challenges</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ challenges.id }}</span>
+        </dd>
+        <dt><span>Select Challenge</span></dt>
+        <dd>
+          <span>{{ challenges.selectChallenge }}</span>
+        </dd>
+        <dt><span>All Challenges</span></dt>
+        <dd>
+          <span>{{ challenges.allChallenges }}</span>
+        </dd>
+        <dt><span>Progress</span></dt>
+        <dd>
+          <div *ngIf="challenges.progress">
+            <a [routerLink]="['/progress', challenges.progress.id, 'view']">{{ challenges.progress.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Junk Food</span></dt>
+        <dd>
+          <div *ngIf="challenges.junkFood">
+            <a [routerLink]="['/junk-food', challenges.junkFood.id, 'view']">{{ challenges.junkFood.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Screen Time</span></dt>
+        <dd>
+          <div *ngIf="challenges.screenTime">
+            <a [routerLink]="['/screen-time', challenges.screenTime.id, 'view']">{{ challenges.screenTime.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Alcohol</span></dt>
+        <dd>
+          <div *ngIf="challenges.alcohol">
+            <a [routerLink]="['/alcohol', challenges.alcohol.id, 'view']">{{ challenges.alcohol.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Smoking</span></dt>
+        <dd>
+          <div *ngIf="challenges.smoking">
+            <a [routerLink]="['/smoking', challenges.smoking.id, 'view']">{{ challenges.smoking.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Search</span></dt>
+        <dd>
+          <span *ngFor="let search of challenges.searches; let last = last">
+            <a [routerLink]="['/search', search.id, 'view']">{{ search.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span>Filtered</span></dt>
+        <dd>
+          <span *ngFor="let filtered of challenges.filtereds; let last = last">
+            <a [routerLink]="['/filtered', filtered.id, 'view']">{{ filtered.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/challenges', challenges.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

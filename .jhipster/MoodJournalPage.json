@@ -1,0 +1,49 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141230",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "mood_journal_page",
+  "fields": [
+    {
+      "fieldName": "allEntries",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "currentTab",
+      "fieldType": "TabLabel",
+      "fieldValues": "All,Entries,Prompts"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "MoodJournalPage",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "entriesPage",
+      "otherEntityRelationshipName": "moodJournalPage",
+      "relationshipName": "entriesPage",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "promptsPage",
+      "otherEntityRelationshipName": "moodJournalPage",
+      "relationshipName": "promptsPage",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "navigationPortal",
+      "otherEntityRelationshipName": "moodJournalPage",
+      "ownerSide": false,
+      "relationshipName": "navigationPortal",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

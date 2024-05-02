@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Profile Page Main</title>
+  </head>
+
+  <body [ngClass]="theme">
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="active">Profile <img src="assets/images/profile-custom.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="header-text">
+            <li class="font-size-slider-container" style="display: flex; align-items: center; margin-top: 140px; margin-bottom: -130px">
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 5px"
+              />
+            </li>
+            <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-left: 135px; margin-top: 95px; margin-bottom: -100px">
+              <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+            </button>
+            <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'" style="margin-top: 130px">We're Purefy!</h6>
+            <h2 style="margin-top: 30px">
+              Welcome<strong *ngIf="account$ | async as account">, {{ capitalizeFirstLetter(account.login) }}</strong
+              >!
+            </h2>
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              We, Purefy, stand as architects of transformation, sculpting lives anew. Through the rhythm of discipline and the melody of
+              self-discovery, we orchestrate a symphony of growth. With every pulse of determination, we cleanse the clutter, unveiling the
+              brilliance within. We are catalysts of change, igniting the flames of possibility. Together, we embrace the journey towards
+              clarity, unlocking the boundless potential that resides within each of us. We, Purefy, are not just a destination, but a
+              voyage of becoming. Join us, and let's craft a masterpiece out of our aspirations.
+            </p>
+            <div class="buttons">
+              <div class="main-button" style="margin-top: 15px">
+                <a href="https://youtu.be/sERYe8Z8OTQ?si=qj1CT8gJVxUosV_A" target="_blank">Watch Our Video</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6" style="flex: 1; min-width: 300px; order: 2" (click)="toggleImage()">
+          <div class="image-container" style="text-align: right">
+            <img [src]="getCurrentImage()" alt="Current Image" class="img-fluid rounded-image" style="max-width: 100%; height: auto" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ***** Main Banner Area End ***** -->
+
+    <div class="categories-collections">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="categories text-center">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="section-heading" style="margin-bottom: 60px">
+                    <div class="line-dec"></div>
+                    <h1 style="margin-top: 30px">
+                      Browse Through Your <em><span style="color: pink">Profile</span></em> Here.
+                    </h1>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-md-2 col-sm-6 text-center">
+                    <div class="item">
+                      <div class="icon">
+                        <a routerLink="/Login"><img src="assets/images/signin.jpg" alt="" style="border-radius: 10px" /></a>
+                      </div>
+                      <h4>Sign In</h4>
+                      <div class="icon-button">
+                        <a routerLink="/Login"><i class="fa fa-angle-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-sm-6 text-center">
+                    <div class="item">
+                      <div class="icon">
+                        <a routerLink="/Support"><img src="assets/images/support.jpg" alt="" style="border-radius: 10px" /></a>
+                      </div>
+                      <h4>Support</h4>
+                      <div class="icon-button">
+                        <a routerLink="/Support"><i class="fa fa-angle-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-sm-6 text-center">
+                    <div class="item">
+                      <div class="icon">
+                        <a routerLink="/Feedback"><img src="assets/images/feedback.jpg" alt="" style="border-radius: 10px" /></a>
+                      </div>
+                      <h4>Feedback</h4>
+                      <div class="icon-button">
+                        <a routerLink="/Feedback"><i class="fa fa-angle-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-sm-6 text-center">
+                    <div class="item">
+                      <div class="icon">
+                        <a routerLink="/account/password"><img src="assets/images/password.jpg" alt="" style="border-radius: 10px" /></a>
+                      </div>
+                      <h4>Password</h4>
+                      <div class="icon-button">
+                        <a routerLink="/account/password"><i class="fa fa-angle-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-sm-6 text-center">
+                    <div class="item">
+                      <div class="icon">
+                        <a routerLink="/Signout"><img src="assets/images/out.jpg" alt="" style="border-radius: 10px" /></a>
+                      </div>
+                      <h4>Sign Out</h4>
+                      <div class="icon-button">
+                        <a routerLink="/Signout"><i class="fa fa-angle-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-md-2 col-sm-4 text-center">
+                    <div class="item" (click)="togglePDF('GDPR')">
+                      <div class="icon envelope-icon" [class.animating]="animatingGDPR">
+                        <i class="fa fa-envelope fa-2x" style="cursor: pointer"></i>
+                      </div>
+                      <h4>Our GDPR</h4>
+                      <i class="fa fa-angle-right"></i>
+                    </div>
+                  </div>
+
+                  <!-- GDPR Modal -->
+                  <div *ngIf="showGDPR" class="custom-modal-overlay" (click)="togglePDF('GDPR')">
+                    <div class="custom-modal" (click)="$event.stopPropagation()">
+                      <div class="custom-modal-header">
+                        <h5>GDPR Document</h5>
+                        <button type="button" class="close" (click)="togglePDF('GDPR')">&times;</button>
+                      </div>
+                      <div class="custom-modal-body">
+                        <embed src="assets/images/GDPR.pdf" type="application/pdf" width="100%" height="500px" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-sm-4 text-center">
+                    <div class="item">
+                      <div class="icon">
+                        <a routerLink="/About"><img src="assets/images/about32.jpg" alt="" style="border-radius: 10px" /></a>
+                      </div>
+                      <h4>About us</h4>
+                      <div class="icon-button">
+                        <a routerLink="/About"><i class="fa fa-angle-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-sm-4 text-center">
+                    <div class="item">
+                      <div class="icon">
+                        <a routerLink="/Team"><img src="assets/images/team.jpg" alt="" style="border-radius: 10px" /></a>
+                      </div>
+                      <h4>Our Team</h4>
+                      <div class="icon-button">
+                        <a routerLink="/Team"><i class="fa fa-angle-right"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2 col-sm-4 text-center">
+                    <div class="item" (click)="togglePDF('DPIA')">
+                      <div class="icon envelope-icon" [class.animating]="animatingDPIA">
+                        <i class="fa fa-envelope fa-2x" style="cursor: pointer"></i>
+                      </div>
+                      <h4>Our DPIA</h4>
+                      <i class="fa fa-angle-right"></i>
+                    </div>
+                  </div>
+
+                  <!-- DPIA Modal -->
+                  <div *ngIf="showDPIA" class="custom-modal-overlay" (click)="togglePDF('DPIA')">
+                    <div class="custom-modal" (click)="$event.stopPropagation()">
+                      <div class="custom-modal-header">
+                        <h5>DPIA Document</h5>
+                        <button type="button" class="close" (click)="togglePDF('DPIA')">&times;</button>
+                      </div>
+                      <div class="custom-modal-body">
+                        <embed src="assets/images/DPIA.pdf" type="application/pdf" width="100%" height="500px" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

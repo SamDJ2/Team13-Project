@@ -1,0 +1,163 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-challenges-heading" data-cy="ChallengesCreateUpdateHeading">Create or edit a Challenges</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_selectChallenge">Select Challenge</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="selectChallenge"
+            id="field_selectChallenge"
+            data-cy="selectChallenge"
+            formControlName="selectChallenge"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_allChallenges">All Challenges</label>
+          <input
+            type="text"
+            class="form-control"
+            name="allChallenges"
+            id="field_allChallenges"
+            data-cy="allChallenges"
+            formControlName="allChallenges"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_progress">Progress</label>
+          <select
+            class="form-control"
+            id="field_progress"
+            data-cy="progress"
+            name="progress"
+            formControlName="progress"
+            [compareWith]="compareProgress"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="progressOption" *ngFor="let progressOption of progressesCollection">{{ progressOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_junkFood">Junk Food</label>
+          <select
+            class="form-control"
+            id="field_junkFood"
+            data-cy="junkFood"
+            name="junkFood"
+            formControlName="junkFood"
+            [compareWith]="compareJunkFood"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="junkFoodOption" *ngFor="let junkFoodOption of junkFoodsSharedCollection">{{ junkFoodOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_screenTime">Screen Time</label>
+          <select
+            class="form-control"
+            id="field_screenTime"
+            data-cy="screenTime"
+            name="screenTime"
+            formControlName="screenTime"
+            [compareWith]="compareScreenTime"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="screenTimeOption" *ngFor="let screenTimeOption of screenTimesSharedCollection">
+              {{ screenTimeOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alcohol">Alcohol</label>
+          <select
+            class="form-control"
+            id="field_alcohol"
+            data-cy="alcohol"
+            name="alcohol"
+            formControlName="alcohol"
+            [compareWith]="compareAlcohol"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="alcoholOption" *ngFor="let alcoholOption of alcoholSharedCollection">{{ alcoholOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_smoking">Smoking</label>
+          <select
+            class="form-control"
+            id="field_smoking"
+            data-cy="smoking"
+            name="smoking"
+            formControlName="smoking"
+            [compareWith]="compareSmoking"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="smokingOption" *ngFor="let smokingOption of smokingsSharedCollection">{{ smokingOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label for="field_searches">Search</label>
+          <select
+            class="form-control"
+            id="field_searches"
+            data-cy="search"
+            multiple
+            name="searches"
+            formControlName="searches"
+            [compareWith]="compareSearch"
+          >
+            <option [ngValue]="searchOption" *ngFor="let searchOption of searchesSharedCollection">{{ searchOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label for="field_filtereds">Filtered</label>
+          <select
+            class="form-control"
+            id="field_filtereds"
+            data-cy="filtered"
+            multiple
+            name="filtereds"
+            formControlName="filtereds"
+            [compareWith]="compareFiltered"
+          >
+            <option [ngValue]="filteredOption" *ngFor="let filteredOption of filteredsSharedCollection">{{ filteredOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

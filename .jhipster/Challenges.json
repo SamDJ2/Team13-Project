@@ -1,0 +1,77 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141206",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "challenges",
+  "fields": [
+    {
+      "fieldName": "selectChallenge",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "allChallenges",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Challenges",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "progress",
+      "otherEntityRelationshipName": "challenges",
+      "ownerSide": true,
+      "relationshipName": "progress",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "junkFood",
+      "otherEntityRelationshipName": "challenges",
+      "relationshipName": "junkFood",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "screenTime",
+      "otherEntityRelationshipName": "challenges",
+      "relationshipName": "screenTime",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "alcohol",
+      "otherEntityRelationshipName": "challenges",
+      "relationshipName": "alcohol",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "smoking",
+      "otherEntityRelationshipName": "challenges",
+      "relationshipName": "smoking",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "search",
+      "otherEntityRelationshipName": "challenges",
+      "ownerSide": true,
+      "relationshipName": "search",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "filtered",
+      "otherEntityRelationshipName": "challenges",
+      "ownerSide": true,
+      "relationshipName": "filtered",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "navigationPortal",
+      "otherEntityRelationshipName": "challenges",
+      "ownerSide": false,
+      "relationshipName": "navigationPortal",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

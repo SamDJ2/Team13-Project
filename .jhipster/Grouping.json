@@ -1,0 +1,56 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141227",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "grouping",
+  "fields": [
+    {
+      "fieldName": "iD",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "groupingName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "groupingPoints",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "remainingTime",
+      "fieldType": "Duration"
+    },
+    {
+      "fieldName": "currentDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Grouping",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "members",
+      "otherEntityRelationshipName": "grouping",
+      "relationshipName": "members",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "badges",
+      "otherEntityRelationshipName": "grouping",
+      "relationshipName": "badges",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "leaderBoards",
+      "otherEntityRelationshipName": "grouping",
+      "ownerSide": false,
+      "relationshipName": "leaderBoards",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

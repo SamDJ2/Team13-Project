@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-members-heading" data-cy="MembersCreateUpdateHeading">Create or edit a Members</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_groupID">Group ID</label>
+          <input type="number" class="form-control" name="groupID" id="field_groupID" data-cy="groupID" formControlName="groupID" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_userID">User ID</label>
+          <input type="number" class="form-control" name="userID" id="field_userID" data-cy="userID" formControlName="userID" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_leader">Leader</label>
+          <input type="checkbox" class="form-check" name="leader" id="field_leader" data-cy="leader" formControlName="leader" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_grouping">Grouping</label>
+          <select
+            class="form-control"
+            id="field_grouping"
+            data-cy="grouping"
+            name="grouping"
+            formControlName="grouping"
+            [compareWith]="compareGrouping"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="groupingOption" *ngFor="let groupingOption of groupingsSharedCollection">{{ groupingOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

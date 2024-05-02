@@ -1,0 +1,6 @@
+entity Feedback{
+    name String required,
+    email String required,
+    subject String required,
+    message String required
+}

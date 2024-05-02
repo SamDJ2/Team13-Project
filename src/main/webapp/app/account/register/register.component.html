@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Login</title>
+    <style>
+      @import 'vendor/bootstrap/css/bootstrap.min';
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900');
+      @import url('https://unpkg.com/swiper@7/swiper-bundle.min.css');
+      @import 'assets/css/fontawesome';
+
+                     body {
+
+                 .form-input,
+                 input[type="email"],
+                 input[type="password"],
+                 input[type="text"] {
+                   background-color: #555; /* Grey background */
+                   color: #fff; /* White text */
+                   border: 1px solid #666; /* Slight border for definition */
+                   border-radius: 25px; /* Rounded corners */
+                   padding: 10px 20px; /* Padding inside the input boxes */
+                   width: calc(100% - 40px); /* Adjust width to fit container, accounting for padding */
+                   box-sizing: border-box; /* Ensures padding is included in total width/height */
+                 }
+
+              h1 {
+                         font-weight: bold;
+                     }
+                 /* Placeholder color */
+                 ::placeholder {
+                   color: #bbb; /* Lighter grey for placeholder text */
+                 }
+
+                 /* Hover effect for input fields */
+                 .form-input:hover,
+                 input[type="email"]:hover,
+                 input[type="password"]:hover,
+                 input[type="text"]:hover {
+                  outline: none;
+               box-shadow: 0 0 8px 2px #fff;
+                 }
+
+                   .form-button, button[type="submit"] {
+               background-color: #000; /* Black background */
+               color: #fff; /* White text */
+               border: none; /* No border */
+               border-radius: 25px; /* Rounded corners */
+               padding: 12px 24px; /* Vertical and horizontal padding */
+               cursor: pointer; /* Change cursor to indicate it's clickable */
+               font-size: 16px; /* Font size of the text */
+               display: flex; /* Use flexbox for alignment */
+               align-items: center; /* Align items vertically */
+               justify-content: center; /* Center content horizontally */
+               gap: 8px; /* Space between icon and text */
+             }
+
+             .form-button:hover, button[type="submit"]:hover {
+               background-color: #222; /* Slightly lighter black on hover */
+               transition: background-color 0.3s; /* Smooth transition for the background color */
+             }
+
+             .form-button, button[type="submit"] {
+               width: 830px; /* Adjust as needed */
+               /* Other styles remain the same */
+             }
+
+                 .form-text.text-danger {
+                     text-align: center; /* Center-align the validation messages */
+                     display: block; /* Display block to take the full width */
+                     margin-top: 10px; /* Add some space above the message */
+                 }
+
+             .form-input,
+                 input[type="email"],
+                 input[type="password"],
+                 input[type="text"] {
+               width: 830px; /* Adjust as needed */
+               /* Other styles remain the same */
+             }
+
+              .form-button, button[type="submit"] {
+                     /* ... other button styles ... */
+                     transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for background color and shadow */
+                 }
+
+                 .form-button:hover, button[type="submit"]:hover {
+                     background-color: #333; /* Darker background color on hover */
+                     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White glow effect */
+                 }
+
+                 /* Pink validation box */
+             /* Pink validation box */
+             .pink-validation-box {
+               background-color: #ffcccb; /* Light pink background */
+               color: black; /* Black text color */
+               text-align: center; /* Center text */
+               padding: 10px; /* Padding inside the box */
+               border-radius: 5px; /* Slightly rounded corners for the box */
+               margin: 10px auto; /* Top and bottom margin and auto left and right margin for centering */
+               width: 80%; /* Set width, you can adjust as needed */
+               max-width: 600px; /* Set a max-width to ensure it doesn't get too wide */
+               box-sizing: border-box; /* Include padding and border in the element's total width and height */
+             }
+
+           .another-validation-box {
+         color: black; /* Black text color */
+         text-align: center; /* Center text */
+         padding: 10px; /* Padding inside the box */
+         border-radius: 5px; /* Slightly rounded corners for the box */
+         margin: 10px auto 60px 100px; /* Top and bottom margin 10px, auto left margin, 0 right margin */
+         width: 80%; /* Set width, you can adjust as needed */
+         max-width: 900px; /* Set a max-width to ensure it doesn't get too wide */
+         box-sizing: border-box; /* Include padding and border in the element's total width and height */
+       }
+    </style>
+  </head>
+
+  <body>
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="active">Profile <img src="assets/images/profile-custom.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div>
+      <div style="margin-top: 0px; background-color: #1f2122; padding-top: 30px; padding-bottom: 20px">
+        <h1 style="color: white; margin: 0; text-align: center; margin-top: 100px; margin-bottom: 30px">
+          <span style="color: white; text-decoration: underline">Register</span> <span style="color: #e75e8d">into Purefy</span>
+        </h1>
+        <h5 style="text-align: center; margin-top: 20px">Please enter your <em>credentials</em> to register.</h5>
+
+        <div class="alert alert-success pink-validation-box" *ngIf="success">
+          <strong>Registration saved!</strong> Redirecting you to the sign in page.
+        </div>
+
+        <div class="alert alert-danger pink-validation-box" *ngIf="errorUserExists">
+          <strong>Login name already registered!</strong> Please choose another one.
+        </div>
+
+        <div class="alert alert-danger pink-validation-box" *ngIf="errorEmailExists">
+          <strong>Email is already in use!</strong> Please choose another one.
+        </div>
+
+        <div class="alert alert-danger pink-validation-box" *ngIf="doNotMatch">The password and its confirmation do not match!</div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <div class="col-md-8">
+        <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="login"
+              name="login"
+              placeholder="Your username"
+              formControlName="login"
+              data-cy="username"
+              #login
+            />
+
+            <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
+              <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.required"> Your username is required. </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.minlength">
+                Your username is required to be at least 1 character.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.maxlength">
+                Your username cannot be longer than 50 characters.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('login')?.errors?.pattern"> Your username is invalid. </small>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Your email"
+              formControlName="email"
+              data-cy="email"
+            />
+
+            <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
+              <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.required"> Your email is required. </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.invalid"> Your email is invalid. </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.minlength">
+                Your email is required to be at least 5 characters.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('email')?.errors?.maxlength">
+                Your email cannot be longer than 50 characters.
+              </small>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              placeholder="New password"
+              formControlName="password"
+              data-cy="firstPassword"
+            />
+
+            <div
+              *ngIf="
+                registerForm.get('password')!.invalid && (registerForm.get('password')!.dirty || registerForm.get('password')!.touched)
+              "
+            >
+              <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.required">
+                Your password is required.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.minlength">
+                Your password is required to be at least 4 characters.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('password')?.errors?.maxlength">
+                Your password cannot be longer than 50 characters.
+              </small>
+            </div>
+
+            <jhi-password-strength-bar [passwordToCheck]="registerForm.get('password')!.value"></jhi-password-strength-bar>
+          </div>
+
+          <div class="mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirm the new password"
+              formControlName="confirmPassword"
+              data-cy="secondPassword"
+            />
+
+            <div
+              *ngIf="
+                registerForm.get('confirmPassword')!.invalid &&
+                (registerForm.get('confirmPassword')!.dirty || registerForm.get('confirmPassword')!.touched)
+              "
+            >
+              <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.required">
+                Your confirmation password is required.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.minlength">
+                Your confirmation password is required to be at least 4 characters.
+              </small>
+
+              <small class="form-text text-danger" *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength">
+                Your confirmation password cannot be longer than 50 characters.
+              </small>
+            </div>
+          </div>
+
+          <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" data-cy="submit">
+            <i class="fas fa-user-plus"></i>Register
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <footer style="margin-top: 100px">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p>
+              Thanks for visiting our website, Purefy!
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

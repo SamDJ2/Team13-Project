@@ -1,0 +1,108 @@
+<div>
+  <h2 id="page-heading" data-cy="BadgesHeading">
+    <span>Badges</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-badges"
+        [routerLink]="['/badges/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Badges </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="badges?.length === 0">
+    <span>No Badges found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="badges && badges.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="badgeNo">
+            <div class="d-flex">
+              <span>Badge No</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="requiredPoints">
+            <div class="d-flex">
+              <span>Required Points</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="badge">
+            <div class="d-flex">
+              <span>Badge</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="grouping.id">
+            <div class="d-flex">
+              <span>Grouping</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let badges of badges; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/badges', badges.id, 'view']">{{ badges.id }}</a>
+          </td>
+          <td>{{ badges.badgeNo }}</td>
+          <td>{{ badges.requiredPoints }}</td>
+          <td>
+            <a *ngIf="badges.badge" (click)="openFile(badges.badge, badges.badgeContentType)">
+              <img [src]="'data:' + badges.badgeContentType + ';base64,' + badges.badge" style="max-height: 30px" alt="badges image" />
+            </a>
+            <span *ngIf="badges.badge">{{ badges.badgeContentType }}, {{ byteSize(badges.badge) }}</span>
+          </td>
+          <td>
+            <div *ngIf="badges.grouping">
+              <a [routerLink]="['/grouping', badges.grouping.id, 'view']">{{ badges.grouping.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/badges', badges.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/badges', badges.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(badges)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>About</title>
+  </head>
+
+  <body [ngClass]="theme">
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="active">Profile <img src="assets/images/profile-custom.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div
+            class="page-content"
+            style="
+              text-align: center;
+              background-color: #333;
+              padding-left: 50px;
+              padding-right: 20px;
+              font-family: 'Poppins', sans-serif;
+              color: #fff;
+            "
+          >
+            <div
+              class="font-size-slider-container"
+              style="display: flex; align-items: center; justify-content: flex-end; align-items: center; margin-top: -40px"
+            >
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 2px; margin-right: 5px"
+              />
+              <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
+            <!-- Heading Section -->
+            <div class="heading-section">
+              <h1 style="margin-right: 30px">
+                <span style="color: #e75e8d">Know all</span>
+                <span style="color: white; text-decoration: underline">about us</span>
+                <span style="color: #e75e8d">through this page!</span>
+              </h1>
+            </div>
+            <div class="w3-container" style="padding: 32px 16px; margin-right: 50px" id="work">
+              <div class="text-container">
+                <!-- Image on the right side -->
+                <img src="assets/images/about1.jpg" alt="Image description" class="float-right-image" />
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                  Our website serves as a comprehensive portal for those embarking on a dopamine detox journey, aiming to mitigate the
+                  overwhelming effects of constant digital stimulation. It's crafted with the intent to help users break free from the cycle
+                  of short-term pleasure-seeking behaviors, fostering long-term satisfaction and mental clarity. With an extensive library
+                  of scientifically-backed resources, interactive challenges, and a supportive community, the platform offers a holistic
+                  approach to detoxification from excessive screen time, social media, unhealthy eating habits, and other forms of instant
+                  gratification.
+                </p>
+
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                  Key features include personalized detox plans tailored to individual needs, progress tracking tools, and expert-led
+                  workshops and webinars that delve into the science of dopamine and its impact on our lives. The website also encourages
+                  participation in a variety of challenges designed to replace unhealthy habits with positive alternatives, promoting
+                  physical activity, mindfulness practices, creative pursuits, and meaningful social interactions.
+                </p>
+
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                  In addition to practical resources, our platform fosters a supportive environment where users can share their experiences,
+                  successes, and challenges, creating a sense of community and belonging. Regularly updated blog posts, success stories, and
+                  expert insights keep the content fresh and engaging, ensuring users have access to the latest research and motivational
+                  stories.
+                </p>
+
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                  By focusing on the root causes of digital overconsumption and providing actionable solutions, our website aims to empower
+                  individuals to lead more balanced, fulfilling lives in an increasingly digital world. Whether you're just starting out or
+                  are well on your detox journey, our platform is designed to support, educate, and inspire you every step of the way
+                  towards achieving digital well-being and a healthier lifestyle.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'" style="margin-right: 50px">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

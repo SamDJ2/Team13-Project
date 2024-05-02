@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141221",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "habit",
+  "fields": [
+    {
+      "fieldName": "habitID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "habitName",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Habit",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "newWeeklyHabitTracker",
+      "otherEntityRelationshipName": "habit",
+      "relationshipName": "newWeeklyHabitTracker",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "navigationPortal",
+      "otherEntityRelationshipName": "habit",
+      "ownerSide": false,
+      "relationshipName": "navigationPortal",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

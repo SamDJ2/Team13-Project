@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141225",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "user_points",
+  "fields": [
+    {
+      "fieldName": "userID",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "currentPoints",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "previousPoints",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalPoints",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "UserPoints",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "leaderBoards",
+      "otherEntityRelationshipName": "userPoints",
+      "relationshipName": "leaderBoards",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

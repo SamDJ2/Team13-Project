@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141209",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "screen_time",
+  "fields": [
+    {
+      "fieldName": "selectCategory",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ScreenTime",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "videoGames",
+      "otherEntityRelationshipName": "screenTime",
+      "relationshipName": "videoGames",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "movies",
+      "otherEntityRelationshipName": "screenTime",
+      "relationshipName": "movies",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "socialMedia",
+      "otherEntityRelationshipName": "screenTime",
+      "relationshipName": "socialMedia",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "music",
+      "otherEntityRelationshipName": "screenTime",
+      "relationshipName": "music",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "challenges",
+      "otherEntityRelationshipName": "screenTime",
+      "relationshipName": "challenges",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>PROMPTS</title>
+  </head>
+  <body [ngClass]="theme">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <a href="#" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage" class="active">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Page Content Start ***** -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <h4 class="welcome-title">Prompts</h4>
+            <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 2px; margin-right: 5px"
+              />
+              <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
+            <!-- ***** Introductory Section Expanded ***** -->
+            <div class="intro-section-prompts">
+              <p [style.fontSize]="fontSizeMultiplier + 'rem'">
+                Explore your prompted entries below or add a new prompted entry simply by pressing the "+" button below!
+              </p>
+              <p class="note" [style.fontSize]="fontSizeMultiplier * 0.8 + 'rem'">
+                Note: you will only be allowed to make a prompted entry if you've chosen a mood from the "Mood Picker"
+              </p>
+            </div>
+            <div class="MJ_SECTION" [ngClass]="theme">
+              <!-- ***** Sidebar Start ***** -->
+              <div class="sidebar" id="sidebar" [ngClass]="theme">
+                <ul>
+                  <li><a href="#" routerLink="/MoodJournalPage">All</a></li>
+                  <li><a href="#" routerLink="/Entries">Entries</a></li>
+                  <li><a href="#" routerLink="/Prompts">Prompts</a></li>
+                </ul>
+              </div>
+              <!-- ***** Sidebar End ***** -->
+              <!-- Additional Text Section Start -->
+            </div>
+            <div id="journal-content" [ngClass]="theme">
+              <!-- ***** Search Bar Start ***** -->
+              <div class="journal-search" [ngClass]="theme">
+                <form id="journalSearch" action="#" [ngClass]="theme">
+                  <input
+                    type="text"
+                    placeholder="Search Prompted Entries"
+                    id="promptSearchText"
+                    name="searchKeyword"
+                    [(ngModel)]="searchTerm"
+                    (input)="filterPromptedEntries()"
+                  />
+                </form>
+              </div>
+              <!-- ***** Search Bar End ***** -->
+              <!-- ***** Prompted Entry Card ***** -->
+              <div class="card mb-4 prompted-entry" *ngFor="let promptedEntry of filteredPromptedEntries">
+                <div class="card-body">
+                  <h6 class="card-title">{{ promptedEntry.title }}</h6>
+                  <p class="card-text">Prompt: {{ promptedEntry.prompt }}</p>
+                  <p class="card-text">{{ promptedEntry.content }}</p>
+                  <p class="card-text">
+                    <small>Entry Date: {{ formatDate(promptedEntry.date) | date: 'longDate' }}</small>
+                  </p>
+                  <button class="delete-button" (click)="deletePromptedEntry(promptedEntry.id)">Delete</button>
+                </div>
+              </div>
+              <!-- ***** Add Entry Button Start **** -->
+              <div class="add-prompt-button-container">
+                <button id="addPromptButton" class="add-prompt-button" (click)="openPromptPopup()">+</button>
+              </div>
+              <!-- Popup for adding new prompt -->
+              <div class="add-prompt-popup" id="addPromptPopup">
+                <div class="prompt-popup-content">
+                  <span class="prompt-close-button" (click)="closePromptPopup()">&times;</span>
+                  <h3>Add New Prompt</h3>
+                  <p *ngIf="!(account$ | async)">Please log in to make a prompted entry.</p>
+                  <ng-container *ngIf="account$ | async">
+                    <p *ngIf="chosenMood === 'None' || chosenMood === null">
+                      It seems like you haven't chosen how you're feeling from your home page, please go back and choose a mood to be able
+                      to write a prompted entry.
+                    </p>
+                    <p *ngIf="chosenMood !== 'None' && chosenMood !== null">
+                      It appears you might be feeling
+                      <a href="#" routerLink="/Emotions" class="emotion-link"
+                        ><u>{{ chosenMood }}</u></a
+                      >
+                      today. Let us help you navigate through your emotions with prompts thoughtfully designed to resonate with your current
+                      state of mind. Our goal is to provide a comforting space for reflection and understanding, tailored specifically to
+                      your feelings.
+                    </p>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Page Content End ***** -->
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

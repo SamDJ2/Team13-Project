@@ -1,0 +1,116 @@
+<div>
+  <h2 id="page-heading" data-cy="GroupingHeading">
+    <span>Groupings</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-grouping"
+        [routerLink]="['/grouping/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Grouping </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="groupings?.length === 0">
+    <span>No Groupings found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="groupings && groupings.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="iD">
+            <div class="d-flex">
+              <span>I D</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="groupingName">
+            <div class="d-flex">
+              <span>Grouping Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="groupingPoints">
+            <div class="d-flex">
+              <span>Grouping Points</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="remainingTime">
+            <div class="d-flex">
+              <span>Remaining Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="currentDate">
+            <div class="d-flex">
+              <span>Current Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let grouping of groupings; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/grouping', grouping.id, 'view']">{{ grouping.id }}</a>
+          </td>
+          <td>{{ grouping.iD }}</td>
+          <td>{{ grouping.groupingName }}</td>
+          <td>{{ grouping.groupingPoints }}</td>
+          <td title="{{ grouping.remainingTime }}">{{ grouping.remainingTime | duration }}</td>
+          <td>{{ grouping.currentDate | formatMediumDate }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/grouping', grouping.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/grouping', grouping.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(grouping)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

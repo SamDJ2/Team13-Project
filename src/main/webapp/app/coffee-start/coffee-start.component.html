@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <title>Coffee Start</title>
+  </head>
+
+  <body [ngClass]="theme">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index" class="active">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div [ngSwitch]="currentState">
+      <div *ngSwitchCase="'state1'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Coffee</h2>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 1</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h5><em>A Nice Way To Start.</em></h5>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>Only Three Cups Of Coffee Today.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Limit your coffee consumption to just three occasions throughout the day. This approach helps in balancing the
+                              benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
+                              disturbed sleep patterns and increased heart rate if over-consumed. Choose three specific times that align
+                              with your energy needs, perhaps one in the morning to kickstart your day, another in the early afternoon to
+                              sustain your energy levels and one in the early evening without affecting your nighttime rest. Remember,
+                              moderation is key to enjoying coffee's perks while maintaining your health and well-being.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('timer1')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('timer1', 'Coffee', '1'); $event.preventDefault(); sendPoints(1)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('timer1')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['timer1'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'timer1',
+                                        'Coffee (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '1'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(1)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state2'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Coffee</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 2</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are good at self control?</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>Only Two Cups Of Coffee Today.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Limit your coffee consumption to just two occasions throughout the day. This approach helps in balancing the
+                              benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
+                              disturbed sleep patterns and increased heart rate if over-consumed. Choose two specific times that align with
+                              your energy needs, perhaps one in the morning to kickstart your day and another in the early afternoon to
+                              sustain your energy levels without affecting your nighttime rest. Remember, moderation is key to enjoying
+                              coffee's perks while maintaining your health and well-being.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('timer2')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('timer2', 'Coffee', '2'); $event.preventDefault(); sendPoints(2)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('timer2')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['timer2'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'timer2',
+                                        'Coffee (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '2'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(1)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state3'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Coffee</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 3</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are almost there.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>Only One Cup Of Coffee Today.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Limit your coffee consumption to just one occasion throughout the day. This approach helps in balancing the
+                              benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
+                              disturbed sleep patterns and increased heart rate if over-consumed. Choose one specific time that align with
+                              your energy needs, perhaps one in the morning to kickstart your day to sustain your energy levels without
+                              affecting your nighttime rest. Remember, moderation is key to enjoying coffee's perks while maintaining your
+                              health and well-being.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('timer3')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('timer3', 'Coffee', '3'); $event.preventDefault(); sendPoints(3)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('timer3')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['timer3'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'timer3',
+                                        'Coffee (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '3'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(3)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state4'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Coffee</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 4</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>Time to shine.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Coffee For A Week!</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Limit your coffee consumption to just two occasions throughout the day. This approach helps in balancing the
+                              benefits of caffeine, such as increased alertness and concentration, with its potential downsides, including
+                              disturbed sleep patterns and increased heart rate if over-consumed. Choose two specific times that align with
+                              your energy needs, perhaps one in the morning to kickstart your day and another in the early afternoon to
+                              sustain your energy levels without affecting your nighttime rest. Remember, moderation is key to enjoying
+                              coffee's perks while maintaining your health and well-being.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('timer4')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('timer4', 'Coffee', '4'); $event.preventDefault(); sendPoints(4)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+
+                              <div *ngIf="timerRunning('timer4')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['timer4'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'timer4',
+                                        'Coffee (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '4'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(4)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

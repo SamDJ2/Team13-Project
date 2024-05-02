@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userDB">
+      <h2 data-cy="userDBDetailsHeading"><span>User DB</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ userDB.id }}</span>
+        </dd>
+        <dt><span>User ID</span></dt>
+        <dd>
+          <span>{{ userDB.userID }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ userDB.email }}</span>
+        </dd>
+        <dt><span>Password</span></dt>
+        <dd>
+          <span>{{ userDB.password }}</span>
+        </dd>
+        <dt><span>Phone Number</span></dt>
+        <dd>
+          <span>{{ userDB.phoneNumber }}</span>
+        </dd>
+        <dt><span>Profile Picture</span></dt>
+        <dd>
+          <div *ngIf="userDB.profilePicture">
+            <a (click)="openFile(userDB.profilePicture, userDB.profilePictureContentType)">Open</a>
+            {{ userDB.profilePictureContentType }}, {{ byteSize(userDB.profilePicture) }}
+          </div>
+        </dd>
+        <dt><span>User Name</span></dt>
+        <dd>
+          <span>{{ userDB.userName }}</span>
+        </dd>
+        <dt><span>Landing Page</span></dt>
+        <dd>
+          <div *ngIf="userDB.landingPage">
+            <a [routerLink]="['/landing-page', userDB.landingPage.id, 'view']">{{ userDB.landingPage.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Progress</span></dt>
+        <dd>
+          <div *ngIf="userDB.progress">
+            <a [routerLink]="['/progress', userDB.progress.id, 'view']">{{ userDB.progress.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-db', userDB.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

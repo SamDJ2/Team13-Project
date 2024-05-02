@@ -1,0 +1,135 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-user-db-heading" data-cy="UserDBCreateUpdateHeading">Create or edit a User DB</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_userID">User ID</label>
+          <input type="number" class="form-control" name="userID" id="field_userID" data-cy="userID" formControlName="userID" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_password">Password</label>
+          <input type="text" class="form-control" name="password" id="field_password" data-cy="password" formControlName="password" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_phoneNumber">Phone Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="phoneNumber"
+            id="field_phoneNumber"
+            data-cy="phoneNumber"
+            formControlName="phoneNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_profilePicture">Profile Picture</label>
+          <div>
+            <div *ngIf="editForm.get('profilePicture')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('profilePicture')!.value!, editForm.get('profilePictureContentType')!.value!)"
+                >Open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('profilePictureContentType')!.value }}, {{ byteSize(editForm.get('profilePicture')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ profilePicture: undefined, profilePictureContentType: undefined })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input type="file" id="file_profilePicture" data-cy="profilePicture" (change)="setFileData($event, 'profilePicture', false)" />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="profilePicture"
+            id="field_profilePicture"
+            data-cy="profilePicture"
+            formControlName="profilePicture"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="profilePictureContentType"
+            id="field_profilePictureContentType"
+            formControlName="profilePictureContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_userName">User Name</label>
+          <input type="text" class="form-control" name="userName" id="field_userName" data-cy="userName" formControlName="userName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_landingPage">Landing Page</label>
+          <select
+            class="form-control"
+            id="field_landingPage"
+            data-cy="landingPage"
+            name="landingPage"
+            formControlName="landingPage"
+            [compareWith]="compareLandingPage"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="landingPageOption" *ngFor="let landingPageOption of landingPagesCollection">
+              {{ landingPageOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_progress">Progress</label>
+          <select
+            class="form-control"
+            id="field_progress"
+            data-cy="progress"
+            name="progress"
+            formControlName="progress"
+            [compareWith]="compareProgress"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="progressOption" *ngFor="let progressOption of progressesCollection">{{ progressOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

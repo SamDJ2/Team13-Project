@@ -1,0 +1,61 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141217",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "profile_customization",
+  "fields": [
+    {
+      "fieldName": "preferences",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "privacySettings",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "accountHistory",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bioDescription",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ProfileCustomization",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "joinedTeams",
+      "otherEntityRelationshipName": "profileCustomization",
+      "ownerSide": true,
+      "relationshipName": "joinedTeams",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "setting",
+      "otherEntityRelationshipName": "profileCustomization",
+      "ownerSide": true,
+      "relationshipName": "setting",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "achievement",
+      "otherEntityRelationshipName": "profileCustomization",
+      "ownerSide": true,
+      "relationshipName": "achievement",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "navigationPortal",
+      "otherEntityRelationshipName": "profileCustomization",
+      "ownerSide": false,
+      "relationshipName": "navigationPortal",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

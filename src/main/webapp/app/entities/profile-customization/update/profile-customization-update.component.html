@@ -1,0 +1,131 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-profile-customization-heading" data-cy="ProfileCustomizationCreateUpdateHeading">
+        Create or edit a Profile Customization
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_preferences">Preferences</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="preferences"
+            id="field_preferences"
+            data-cy="preferences"
+            formControlName="preferences"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_privacySettings">Privacy Settings</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="privacySettings"
+            id="field_privacySettings"
+            data-cy="privacySettings"
+            formControlName="privacySettings"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_accountHistory">Account History</label>
+          <input
+            type="text"
+            class="form-control"
+            name="accountHistory"
+            id="field_accountHistory"
+            data-cy="accountHistory"
+            formControlName="accountHistory"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_bioDescription">Bio Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="bioDescription"
+            id="field_bioDescription"
+            data-cy="bioDescription"
+            formControlName="bioDescription"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_joinedTeams">Joined Teams</label>
+          <select
+            class="form-control"
+            id="field_joinedTeams"
+            data-cy="joinedTeams"
+            name="joinedTeams"
+            formControlName="joinedTeams"
+            [compareWith]="compareJoinedTeams"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="joinedTeamsOption" *ngFor="let joinedTeamsOption of joinedTeamsCollection">
+              {{ joinedTeamsOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_setting">Setting</label>
+          <select
+            class="form-control"
+            id="field_setting"
+            data-cy="setting"
+            name="setting"
+            formControlName="setting"
+            [compareWith]="compareSetting"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="settingOption" *ngFor="let settingOption of settingsCollection">{{ settingOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_achievement">Achievement</label>
+          <select
+            class="form-control"
+            id="field_achievement"
+            data-cy="achievement"
+            name="achievement"
+            formControlName="achievement"
+            [compareWith]="compareAchievement"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="achievementOption" *ngFor="let achievementOption of achievementsCollection">
+              {{ achievementOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

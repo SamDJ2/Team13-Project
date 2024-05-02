@@ -1,0 +1,95 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-badges-heading" data-cy="BadgesCreateUpdateHeading">Create or edit a Badges</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_badgeNo">Badge No</label>
+          <input type="number" class="form-control" name="badgeNo" id="field_badgeNo" data-cy="badgeNo" formControlName="badgeNo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_requiredPoints">Required Points</label>
+          <input
+            type="number"
+            class="form-control"
+            name="requiredPoints"
+            id="field_requiredPoints"
+            data-cy="requiredPoints"
+            formControlName="requiredPoints"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_badge">Badge</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('badgeContentType')!.value + ';base64,' + editForm.get('badge')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('badge')!.value"
+              alt="badges image"
+            />
+            <div *ngIf="editForm.get('badge')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start">{{ editForm.get('badgeContentType')!.value }}, {{ byteSize(editForm.get('badge')!.value!) }}</span>
+              <button
+                type="button"
+                (click)="clearInputImage('badge', 'badgeContentType', 'file_badge')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input type="file" id="file_badge" data-cy="badge" (change)="setFileData($event, 'badge', true)" accept="image/*" />
+          </div>
+          <input type="hidden" class="form-control" name="badge" id="field_badge" data-cy="badge" formControlName="badge" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="badgeContentType"
+            id="field_badgeContentType"
+            formControlName="badgeContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_grouping">Grouping</label>
+          <select
+            class="form-control"
+            id="field_grouping"
+            data-cy="grouping"
+            name="grouping"
+            formControlName="grouping"
+            [compareWith]="compareGrouping"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="groupingOption" *ngFor="let groupingOption of groupingsSharedCollection">{{ groupingOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

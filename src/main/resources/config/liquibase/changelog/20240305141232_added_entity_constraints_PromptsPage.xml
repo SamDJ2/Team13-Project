@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity PromptsPage.
+    -->
+    <changeSet id="20240305141232-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="mood_picker_id"
+                                 baseTableName="prompts_page"
+                                 constraintName="fk_prompts_page__mood_picker_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mood_picker"/>
+
+        <addForeignKeyConstraint baseColumnNames="emotion_page_id"
+                                 baseTableName="prompts_page"
+                                 constraintName="fk_prompts_page__emotion_page_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="emotion_page"/>
+
+        <addForeignKeyConstraint baseColumnNames="mood_journal_page_id"
+                                 baseTableName="prompts_page"
+                                 constraintName="fk_prompts_page__mood_journal_page_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mood_journal_page"/>
+    </changeSet>
+</databaseChangeLog>

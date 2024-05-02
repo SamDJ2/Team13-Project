@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <title>Junk Food Start</title>
+  </head>
+
+  <body [ngClass]="theme">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index" class="active">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div [ngSwitch]="currentState">
+      <div *ngSwitchCase="'state1'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Music</h2>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 1</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h5><em>A Nice Way To Start.</em></h5>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Music For 12 Hours.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Dedicate the next 12 hours to a silence that excludes music. This brief interval encourages you to immerse
+                              yourself in the natural sounds around you or the quietness of your own thoughts. It's an opportunity to
+                              experience how your environment and mind interact without the backdrop of melodies, possibly enhancing your
+                              focus, creativity, or mindfulness. Use this time to observe any changes in your mood or productivity and
+                              consider incorporating silent intervals into your routine for balanced auditory stimulation.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('M1')" class="main-border-button">
+                                <a href="#" (click)="startTimerAndChallenge('M1', 12, 'Music', '1'); $event.preventDefault(); sendPoints(1)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('M1')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['M1'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'M1',
+                                        'Music (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '1'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(1)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state2'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Music</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 2</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are good at self control?</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Music for A Day.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              For a full day, refrain from listening to music. This day-long pause from auditory entertainment challenges
+                              you to find alternative ways to soothe, energize, or entertain yourself, such as engaging in meditation,
+                              reading, or enjoying the sounds of nature. It's a chance to explore the effects of a quieter day on your
+                              mental clarity and emotional balance, offering insights into your relationship with music and its impact on
+                              your daily life.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('M2')" class="main-border-button">
+                                <a href="#" (click)="startTimerAndChallenge('M2', 24, 'Music', '2'); $event.preventDefault(); sendPoints(2)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('M2')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['M2'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'M2',
+                                        'Music (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '2'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(2)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state3'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Music</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 3</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>You are almost there.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Music For A Week.</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Commit to a week without music, seeking alternative sources of inspiration and relaxation. This duration
+                              allows you to explore the silence and sounds of everyday life more deeply, potentially leading to a greater
+                              appreciation for moments of quietude and the natural sounds that often go unnoticed. Throughout the week, note
+                              any differences in your stress levels, concentration, and overall well-being. This experiment can also
+                              highlight music's role in your life and how its absence affects your routine and emotions.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('M3')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('M3', 168, 'Junk Food', '3'); $event.preventDefault(); sendPoints(3)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('M3')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['M3'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'M3',
+                                        'Music (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '3'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(3)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'state4'">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-content">
+                <!-- ***** Details Start ***** -->
+                <div class="game-details">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="2"
+                          step="0.1"
+                          [(ngModel)]="fontSizeMultiplier"
+                          (ngModelChange)="updateFontSize()"
+                          class="font-size-slider"
+                          style="margin-top: 2px; margin-right: 5px"
+                        />
+                        <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                          <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+                        </button>
+                      </div>
+                      <h2>Music</h2>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="content">
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="left-info">
+                              <br />
+                              <br />
+                              <h3>Level 4</h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="right-info">
+                              <h3><em>Time to shine.</em></h3>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <br />
+                            <br />
+                            <h3>INSTRUCTIONS :</h3>
+                            <br />
+                            <h4>No Music For 2 Weeks!</h4>
+                          </div>
+
+                          <div class="col-lg-12">
+                            <br />
+
+                            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                              Embark on a two-week journey without music, exploring the space it leaves for other experiences and
+                              sensations. This extended period without musical accompaniment invites you to delve into other forms of
+                              creativity and self-expression, perhaps discovering new hobbies or reconnecting with old ones. It also
+                              provides an opportunity to evaluate how music influences your mood, energy, and daily habits. Reflect on this
+                              experience to understand the balance you want to strike between engaging with music and embracing silence in
+                              your life.
+                            </p>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="asa">
+                              <div *ngIf="!timerRunning('M4')" class="main-border-button">
+                                <a
+                                  href="#"
+                                  (click)="startTimerAndChallenge('M4', 336, 'Music', '4'); $event.preventDefault(); sendPoints(4)"
+                                  >START NOW!</a
+                                >
+                              </div>
+
+                              <!-- Display time remaining and stop challenge link -->
+                              <div *ngIf="timerRunning('M4')" class="main-border-button">
+                                <h4>Time Remaining: {{ timers['M4'] }}</h4>
+                                <br />
+                                <div class="asa">
+                                  <a
+                                    href="#"
+                                    (click)="
+                                      stopTimerAndChallenge(
+                                        'M4',
+                                        'Music (This challenge was called off, and the date of cancellation is indicated below.)',
+                                        '4'
+                                      );
+                                      $event.preventDefault();
+                                      deductPoints(4)
+                                    "
+                                    >QUIT!</a
+                                  >
+                                  <a routerLink="/History">History</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ***** Details End ***** -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

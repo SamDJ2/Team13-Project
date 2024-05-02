@@ -1,0 +1,48 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141224",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "leader_boards",
+  "fields": [
+    {
+      "fieldName": "standings",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "LeaderBoards",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "grouping",
+      "otherEntityRelationshipName": "leaderBoards",
+      "ownerSide": true,
+      "relationshipName": "grouping",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "progress",
+      "otherEntityRelationshipName": "leaderBoards",
+      "ownerSide": true,
+      "relationshipName": "progress",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "userPoints",
+      "otherEntityRelationshipName": "leaderBoards",
+      "relationshipName": "userPoints",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "navigationPortal",
+      "otherEntityRelationshipName": "leaderBoards",
+      "ownerSide": false,
+      "relationshipName": "navigationPortal",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="habitstracking">
+      <h2 data-cy="habitstrackingDetailsHeading"><span>Habitstracking</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ habitstracking.id }}</span>
+        </dd>
+        <dt><span>Name Of Habit</span></dt>
+        <dd>
+          <span>{{ habitstracking.nameOfHabit }}</span>
+        </dd>
+        <dt><span>Day Of Habit</span></dt>
+        <dd>
+          <span>{{ habitstracking.dayOfHabit }}</span>
+        </dd>
+        <dt><span>Week Of Habit</span></dt>
+        <dd>
+          <span>{{ habitstracking.weekOfHabit }}</span>
+        </dd>
+        <dt><span>Completed Habit</span></dt>
+        <dd>
+          <span>{{ habitstracking.completedHabit }}</span>
+        </dd>
+        <dt><span>Username Habit</span></dt>
+        <dd>
+          <span>{{ habitstracking.usernameHabit }}</span>
+        </dd>
+        <dt><span>Habit IDEN</span></dt>
+        <dd>
+          <span>{{ habitstracking.habitIDEN }}</span>
+        </dd>
+        <dt><span>Summary</span></dt>
+        <dd>
+          <span>{{ habitstracking.summary }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/habitstracking', habitstracking.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

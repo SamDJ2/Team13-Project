@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="newWeeklyHabitTracker">
+      <h2 data-cy="newWeeklyHabitTrackerDetailsHeading"><span>New Weekly Habit Tracker</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ newWeeklyHabitTracker.id }}</span>
+        </dd>
+        <dt><span>Record ID</span></dt>
+        <dd>
+          <span>{{ newWeeklyHabitTracker.recordID }}</span>
+        </dd>
+        <dt><span>Habit Completion</span></dt>
+        <dd>
+          <span>{{ newWeeklyHabitTracker.habitCompletion }}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+          <span>{{ newWeeklyHabitTracker.date | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Weekly Summary</span></dt>
+        <dd>
+          <div *ngIf="newWeeklyHabitTracker.weeklySummary">
+            <a [routerLink]="['/weekly-summary', newWeeklyHabitTracker.weeklySummary.id, 'view']">{{
+              newWeeklyHabitTracker.weeklySummary.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span>Habit</span></dt>
+        <dd>
+          <div *ngIf="newWeeklyHabitTracker.habit">
+            <a [routerLink]="['/habit', newWeeklyHabitTracker.habit.id, 'view']">{{ newWeeklyHabitTracker.habit.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/new-weekly-habit-tracker', newWeeklyHabitTracker.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

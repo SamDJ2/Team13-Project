@@ -1,0 +1,27 @@
+{
+  "changelogDate": "20240317011117",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "startTime",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "isActive",
+      "fieldType": "Boolean"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Timer",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "userDB",
+      "relationshipName": "timings",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

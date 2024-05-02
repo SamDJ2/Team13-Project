@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="userPoints">
+      <h2 data-cy="userPointsDetailsHeading"><span>User Points</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ userPoints.id }}</span>
+        </dd>
+        <dt><span>User ID</span></dt>
+        <dd>
+          <span>{{ userPoints.userID }}</span>
+        </dd>
+        <dt><span>Current Points</span></dt>
+        <dd>
+          <span>{{ userPoints.currentPoints }}</span>
+        </dd>
+        <dt><span>Previous Points</span></dt>
+        <dd>
+          <span>{{ userPoints.previousPoints }}</span>
+        </dd>
+        <dt><span>Total Points</span></dt>
+        <dd>
+          <span>{{ userPoints.totalPoints }}</span>
+        </dd>
+        <dt><span>Leader Boards</span></dt>
+        <dd>
+          <div *ngIf="userPoints.leaderBoards">
+            <a [routerLink]="['/leader-boards', userPoints.leaderBoards.id, 'view']">{{ userPoints.leaderBoards.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/user-points', userPoints.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

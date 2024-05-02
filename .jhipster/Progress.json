@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305175636",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "progress",
+  "fields": [
+    {
+      "fieldName": "detoxProgress",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "detoxTotal",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "challengesInfo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "leaderboardInfo",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Progress",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "challenges",
+      "otherEntityRelationshipName": "progress",
+      "ownerSide": false,
+      "relationshipName": "challenges",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "leaderBoards",
+      "otherEntityRelationshipName": "progress",
+      "ownerSide": false,
+      "relationshipName": "leaderBoards",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "userDB",
+      "otherEntityRelationshipName": "progress",
+      "ownerSide": false,
+      "relationshipName": "userDB",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

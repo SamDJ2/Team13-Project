@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="landingPage">
+      <h2 data-cy="landingPageDetailsHeading"><span>Landing Page</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ landingPage.id }}</span>
+        </dd>
+        <dt><span>Get Started</span></dt>
+        <dd>
+          <span>{{ landingPage.getStarted }}</span>
+        </dd>
+        <dt><span>About</span></dt>
+        <dd>
+          <span>{{ landingPage.about }}</span>
+        </dd>
+        <dt><span>Team</span></dt>
+        <dd>
+          <span>{{ landingPage.team }}</span>
+        </dd>
+        <dt><span>Contact</span></dt>
+        <dd>
+          <span>{{ landingPage.contact }}</span>
+        </dd>
+        <dt><span>Mood Picker</span></dt>
+        <dd>
+          <div *ngIf="landingPage.moodPicker">
+            <a [routerLink]="['/mood-picker', landingPage.moodPicker.id, 'view']">{{ landingPage.moodPicker.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/landing-page', landingPage.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

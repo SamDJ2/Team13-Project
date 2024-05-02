@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <title>Feedback</title>
+  </head>
+  <body [ngClass]="theme">
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="active">Profile <img src="assets/images/profile-custom.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div
+            class="page-content"
+            style="
+              text-align: center;
+              background-color: #1f2122;
+              padding-left: 50px;
+              padding-right: 20px;
+              font-family: 'Poppins', sans-serif;
+              color: #fff;
+            "
+          >
+            <div
+              class="font-size-slider-container"
+              style="display: flex; align-items: center; justify-content: flex-end; margin-top: -40px; margin-bottom: 60px"
+            >
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 2px; margin-right: 5px"
+              />
+              <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
+            <!-- Heading Section -->
+            <div class="heading-section">
+              <h1 style="color: white; margin: 0; text-align: center; margin-top: -30px; margin-bottom: 30px; margin-right: 50px">
+                <span style="color: #e75e8d">Your </span>
+                <span [class.pink-text]="theme === 'light'" style="text-decoration: underline">Feedback</span>
+                <span style="color: #e75e8d"> is important to us. We want to know how we're doing.</span>
+              </h1>
+              <h3 style="margin-right: 50px">Please <em>feel free</em> to send a feedback!</h3>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info" style="margin-top: 48px; text-align: center; margin-bottom: 30px; margin-right: 50px">
+              <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                <i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Birmingham, United Kingdom
+              </p>
+              <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                <i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +44 7654896543
+              </p>
+              <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                <i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"></i> Email: purefyemail@gmail.com
+              </p>
+            </div>
+
+            <div class="contact-form" style="width: 100%; margin-left: -20px">
+              <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+                <div>
+                  <input
+                    class="form-input dynamic-text-size"
+                    type="text"
+                    placeholder="Name"
+                    required
+                    [(ngModel)]="contact.name"
+                    name="name"
+                    #name="ngModel"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  />
+                  <div
+                    *ngIf="name.invalid && name.touched"
+                    class="error-message dynamic-text-size"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  >
+                    Name is required.
+                  </div>
+                </div>
+                <div>
+                  <input
+                    class="form-input dynamic-text-size"
+                    type="email"
+                    placeholder="Email"
+                    required
+                    email
+                    [(ngModel)]="contact.email"
+                    name="email"
+                    #email="ngModel"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  />
+                  <div
+                    *ngIf="email.invalid && email.touched"
+                    class="error-message dynamic-text-size"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  >
+                    Please enter a valid email.
+                  </div>
+                </div>
+                <div>
+                  <input
+                    class="form-input dynamic-text-size"
+                    type="text"
+                    placeholder="Subject"
+                    required
+                    [(ngModel)]="contact.subject"
+                    name="subject"
+                    #subject="ngModel"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  />
+                  <div
+                    *ngIf="subject.invalid && subject.touched"
+                    class="error-message dynamic-text-size"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  >
+                    Subject is required.
+                  </div>
+                </div>
+                <div>
+                  <input
+                    class="form-input dynamic-text-size"
+                    type="text"
+                    placeholder="Feedback"
+                    required
+                    [(ngModel)]="contact.message"
+                    name="message"
+                    #message="ngModel"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  />
+                  <div
+                    *ngIf="message.invalid && message.touched"
+                    class="error-message dynamic-text-size"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  >
+                    Feedback is required.
+                  </div>
+                </div>
+                <div>
+                  <button
+                    class="form-button dynamic-text-size"
+                    type="submit"
+                    [disabled]="!contactForm.valid"
+                    [style.fontSize]="fontSizeMultiplier + 'rem'"
+                  >
+                    <i class="fa fa-paper-plane"></i> SUBMIT FEEDBACK
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

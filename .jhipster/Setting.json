@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141219",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "setting",
+  "fields": [
+    {
+      "fieldName": "notificationsEnabled",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "accountDeletionRequested",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "changePassword",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Setting",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "profileCustomization",
+      "otherEntityRelationshipName": "setting",
+      "ownerSide": false,
+      "relationshipName": "profileCustomization",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

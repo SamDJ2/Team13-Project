@@ -1,0 +1,170 @@
+@import 'assets/css/fontawesome';
+
+.item {
+  border-radius: 10px;
+}
+
+.item:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* Adjust color and size as needed */
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition */
+}
+
+.main-info .main-border-button {
+  margin-top: 20px; /* Adjust this value as needed to move the button lower */
+}
+
+html,
+body {
+  background: #1f2122;
+  font-family: 'Poppins', sans-serif;
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.main-banner h6 {
+  font-size: 20px;
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+body .page-content {
+  margin-top: 110px;
+  background-color: #27292a;
+  padding: 60px;
+  border-radius: 23px;
+}
+
+p {
+  font-size: 15px;
+  color: #666;
+  line-height: 30px;
+  margin-bottom: 0px;
+}
+
+footer p {
+  text-align: center;
+  padding: 30px 0px;
+  color: #fff;
+  font-weight: 300;
+}
+
+$base-font-size: 16px; /* Adjusted base font size to 16px */
+
+.dynamic-text-size {
+  font-size: 100%; /* Default font size relative to parent element */
+}
+
+.dynamic-heading {
+  font-size: 150%; /* Default heading font size, adjusted relative to parent element */
+}
+
+.light {
+  background: #f0f0f0;
+  color: #000; // Set default text color to black
+
+  // Specific container and text overrides for light theme
+  .page-content,
+  .item,
+  footer {
+    background: #f0f0f0; // Light background for containers
+    color: #000; // Black text for readability
+  }
+
+  // You might also want to change the color of headers, links, etc.
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #000;
+  }
+
+  a {
+    color: #000;
+    &:hover {
+      color: #555;
+    }
+  }
+
+  // If .item has specific color settings, override them here
+  .item h4,
+  .item p {
+    color: #000;
+  }
+
+  // Update the glow or box-shadow effect for light mode if needed
+  .item:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); // Darker shadow for light mode, adjust as necessary
+  }
+
+  // Ensure text in the footer is visible
+  footer p {
+    color: #000;
+  }
+}
+
+.dark {
+  background: #1f2122;
+  color: #ccc;
+  // Define or adjust your existing dark theme styles as needed
+}
+
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.theme-toggle-button {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle-button:hover {
+  background-color: #666;
+}
+
+.theme-toggle-button {
+  background: none; // No background
+  border: none; // No border
+  padding: 0; // No padding
+  cursor: pointer;
+  font-size: 35px; // Slightly larger icons, adjust as needed
+  line-height: 1;
+  display: flex; // Use flex to center the icon
+  justify-content: center; // Center horizontally
+  align-items: center; // Center vertically
+  height: 50px; // Explicit height for the button
+  width: 50px; // Explicit width for the button
+  margin-left: 10px; // Space from the scrollbar
+  margin-top: 0px; // Move away from the scrollbar by adding left margin, adjust as needed
+
+  &:hover {
+    color: #ccc; // Change color on hover
+  }
+
+  .fas {
+    // Directly target the icon for any specific styles
+    display: block; // Ensure the icon itself is a block to fill the button area
+    color: #ffcc00; // Set the icon color to yellow
+  }
+}

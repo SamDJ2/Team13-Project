@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <title>Habit Tracker</title>
+  </head>
+
+  <body [ngClass]="theme">
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="PUREFY" style="margin-top: 5px" />
+              </a>
+
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits" class="active">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content header-text">
+            <!-- ***** Habit Tracker Start ***** -->
+            <div class="accessibility" style="display: flex; justify-content: flex-end; align-content: center">
+              <li class="font-size-slider-container" style="display: flex; align-items: center">
+                <input
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.1"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                  style="margin-top: 5px"
+                />
+              </li>
+              <button class="theme-toggle-button" (click)="toggleTheme()">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
+            <div class="habit-tracker-container"></div>
+            <div class="habit-tracker">
+              <div class="heading-section">
+                <!-- Added space for the image -->
+
+                <img src="assets/images/axe.png" alt="Picture of an axe" class="axe" />
+                <h4>Habit Tracker</h4>
+              </div>
+              <!-- Button to add new weekly habit tracker -->
+              <div class="previous-weeks">
+                <label for="week-select">Select a week:</label>
+                <select id="week-select" [(ngModel)]="week" (change)="onWeekSelected()">
+                  <option *ngFor="let week of weekNumbers" [value]="week">Week {{ week }}</option>
+                </select>
+              </div>
+              <button class="new-weekly-habit-tracker" (click)="generateNewWeeklyHabitTracker()">Get Predefined Habits (Monday)</button>
+              <!-- Text box to show the week starting date -->
+              <div class="week-starting">
+                <p>Current Week Starting @{{ date }}</p>
+                <!-- Displays the calculated week number -->
+              </div>
+
+              <div class="habit-grid">
+                <div *ngFor="let day of daysOfWeek" class="habit-item">
+                  <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">{{ day }}</p>
+                  <ul>
+                    <li *ngFor="let habit of habits[day]; let i = index">
+                      <input type="checkbox" [(ngModel)]="habit.completedHabit" (ngModelChange)="toggleHabitCompletion(habit)" />
+                      <input
+                        type="text"
+                        [(ngModel)]="habit.nameOfHabit"
+                        name="habitName{{ i }}"
+                        class="habit-name"
+                        [ngClass]="{ 'strike-through': habit.completedHabit }"
+                      />
+                      <button type="submit" *ngIf="isNameFinalized(habit.id)" [style.fontSize]="fontSizeMultiplier + 'rem'">Submit</button>
+                      <button class="remove-habit" (click)="removeHabit(day, habit.id)" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                        Remove
+                      </button>
+                    </li>
+                    <li *ngIf="addingHabit[day]">
+                      <form (ngSubmit)="submitNewHabit(newHabitName[day], day)">
+                        <input type="text" [(ngModel)]="newHabitName[day]" name="newHabitName{{ day }}" />
+                        <button type="submit" class="new-weekly-habit-tracker">Submit</button>
+                      </form>
+                    </li>
+                    <li>
+                      <button
+                        (click)="startAddingHabit(day)"
+                        class="new-weekly-habit-tracker"
+                        [style.fontSize]="fontSizeMultiplier + 'rem'"
+                      >
+                        Add Habit
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Weekly Summary added here -->
+                <div class="weekly-summary">
+                  <h4 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">Weekly Summary</h4>
+                  <form (ngSubmit)="saveSum(summaryInput.value)">
+                    <textarea #summaryInput class="textarea-fixed-font-size" placeholder="Summarize your text here..."></textarea>
+                    <button *ngIf="summaryInput.value" type="submit" [style.fontSize]="fontSizeMultiplier + 'rem'">Delete</button>
+                    <button *ngIf="!summaryInput.value" type="submit" [style.fontSize]="fontSizeMultiplier + 'rem'">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy! <br />You are accessing an experimental web application developed by participants
+              (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

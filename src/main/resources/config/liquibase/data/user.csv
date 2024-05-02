@@ -1,0 +1,9 @@
+id;login;password_hash;first_name;last_name;email;image_url;activated;lang_key;created_by;last_modified_by
+1;admin;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Administrator;Administrator;admin@localhost;assets/images/Avatars/Avatar.png;true;en;system;system
+2;user;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;User;User;user@localhost;assets/images/Avatars/Avatar2.png;true;en;system;system
+3;user1;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;User1;User1;user1@localhost;assets/images/Avatars/Avatar.png;true;en;system;system
+4;user2;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;User2;User2;user2@localhost;assets/images/Avatars/Avatar2.png;true;en;system;system
+5;user3;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;User3;User3;user3@localhost;assets/images/Avatars/Avatar.png;true;en;system;system
+6;user4;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;User4;User4;user4@localhost;assets/images/Avatars/Avatar2.png;true;en;system;system
+7;user5;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;User5;User5;user5@localhost;assets/images/Avatars/Avatar.png;true;en;system;system
+8;user6;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;User6;User6;user6@localhost;assets/images/Avatars/Avatar2.png;true;en;system;system

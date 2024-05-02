@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" [ngClass]="theme">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <title>Coffee Start</title>
+  </head>
+
+  <body [ngClass]="theme">
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <!-- ***** Logo Start ***** -->
+              <a href="" class="logo">
+                <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+              </a>
+
+              <ul class="nav">
+                <li><a routerLink="/Dashboard">Home</a></li>
+                <li><a routerLink="/Challenges-Index" class="active">Challenges</a></li>
+                <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+                <li><a routerLink="/Habits">Habit Tracker</a></li>
+                <li><a routerLink="/Leaderboard">Leaderboards</a></li>
+                <li>
+                  <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+                </li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+              <!-- ***** Menu End ***** -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-content">
+            <div class="font-size-slider-container" style="display: flex; align-items: center; justify-content: flex-end">
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                [(ngModel)]="fontSizeMultiplier"
+                (ngModelChange)="updateFontSize()"
+                class="font-size-slider"
+                style="margin-top: 2px; margin-right: 5px"
+              />
+              <button class="theme-toggle-button" (click)="toggleTheme()" style="margin-top: 2px">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
+            <div class="content-center">
+              <div *ngIf="histories.length > 0">
+                <h2>Your Completed Challenges</h2>
+                <br />
+                <br />
+                <ul>
+                  <li *ngFor="let history of histories">
+                    <ng-container *ngIf="history.username === currentUsername">
+                      <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                        Challenge Name: {{ history.challengeName }}
+                      </h6>
+                      <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                        Challenge Level: {{ history.challengeLevel }}
+                      </h6>
+                      <h6 class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                        Date Started: {{ formatDate(history.dateStarted) }}
+                      </h6>
+                      <br /><br />
+                    </ng-container>
+                  </li>
+                </ul>
+              </div>
+
+              <div *ngIf="histories.length === 0">
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+                  <a routerLink="/login">Login/Signup</a> and Start a new challenge.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

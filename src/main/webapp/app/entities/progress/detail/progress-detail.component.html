@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="progress">
+      <h2 data-cy="progressDetailsHeading"><span>Progress</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ progress.id }}</span>
+        </dd>
+        <dt><span>Detox Progress</span></dt>
+        <dd>
+          <span>{{ progress.detoxProgress }}</span>
+        </dd>
+        <dt><span>Detox Total</span></dt>
+        <dd>
+          <span>{{ progress.detoxTotal }}</span>
+        </dd>
+        <dt><span>Challenges Info</span></dt>
+        <dd>
+          <span>{{ progress.challengesInfo }}</span>
+        </dd>
+        <dt><span>Leaderboard Info</span></dt>
+        <dd>
+          <span>{{ progress.leaderboardInfo }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/progress', progress.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

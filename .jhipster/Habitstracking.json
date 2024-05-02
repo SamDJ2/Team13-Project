@@ -1,0 +1,40 @@
+{
+  "changelogDate": "20240411165520",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "nameOfHabit",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dayOfHabit",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "weekOfHabit",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "completedHabit",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "usernameHabit",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "habitIDEN",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "summary",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Habitstracking",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="emotionPage">
+      <h2 data-cy="emotionPageDetailsHeading"><span>Emotion Page</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ emotionPage.id }}</span>
+        </dd>
+        <dt><span>Prompts</span></dt>
+        <dd>
+          <span>{{ emotionPage.prompts }}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+          <span>{{ emotionPage.date | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Prompted Entry</span></dt>
+        <dd>
+          <span>{{ emotionPage.promptedEntry }}</span>
+        </dd>
+        <dt><span>Current Tab</span></dt>
+        <dd>
+          <span>{{ emotionPage.currentTab }}</span>
+        </dd>
+        <dt><span>Mood Picker</span></dt>
+        <dd>
+          <div *ngIf="emotionPage.moodPicker">
+            <a [routerLink]="['/mood-picker', emotionPage.moodPicker.id, 'view']">{{ emotionPage.moodPicker.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/emotion-page', emotionPage.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

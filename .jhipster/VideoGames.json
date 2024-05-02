@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141214",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "video_games",
+  "fields": [
+    {
+      "fieldName": "levels",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "progress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "timer",
+      "fieldType": "Duration"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "VideoGames",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "screenTime",
+      "otherEntityRelationshipName": "videoGames",
+      "relationshipName": "screenTime",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

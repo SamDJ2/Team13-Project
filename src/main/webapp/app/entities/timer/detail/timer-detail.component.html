@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="timer">
+      <h2 data-cy="timerDetailsHeading"><span>Timer</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ timer.id }}</span>
+        </dd>
+        <dt><span>Start Time</span></dt>
+        <dd>
+          <span>{{ timer.startTime | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Is Active</span></dt>
+        <dd>
+          <span>{{ timer.isActive }}</span>
+        </dd>
+        <dt><span>Timings</span></dt>
+        <dd>
+          <div *ngIf="timer.timings">
+            <a [routerLink]="['/user-db', timer.timings.id, 'view']">{{ timer.timings.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/timer', timer.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

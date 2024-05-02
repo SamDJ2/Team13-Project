@@ -1,0 +1,294 @@
+entity Challenges {
+    SelectChallenge Boolean
+    AllChallenges String
+}
+
+entity Search {
+    Search String
+    Results String
+}
+
+entity Filtered {
+    Search String
+    Results String
+    Filtering Boolean
+}
+
+entity ScreenTime {
+    SelectCategory Boolean
+}
+
+entity JunkFood {
+    Levels String
+    Progress String
+    Timer Duration
+}
+
+entity Smoking {
+    Levels String
+    Progress String
+    Timer Duration
+}
+
+entity Alcohol {
+    Levels String
+    Progress String
+    Timer Duration
+}
+
+entity Music {
+    Levels String
+    Progress String
+    Timer Duration
+}
+
+entity VideoGames {
+    Levels String
+    Progress String
+    Timer Duration
+}
+
+entity Movies {
+    Levels String
+    Progress String
+    Timer Duration
+}
+
+entity SocialMedia {
+    Levels String
+    Progress String
+    Timer Duration
+}
+
+
+relationship ManyToOne {
+    Challenges to JunkFood
+    Challenges to ScreenTime
+    Challenges to Alcohol
+    Challenges to Smoking
+    ScreenTime to VideoGames
+    ScreenTime to Movies
+    ScreenTime to SocialMedia
+    ScreenTime to Music
+}
+
+relationship ManyToMany {
+    Challenges to Search
+    Challenges to Filtered
+}
+
+entity ProfileCustomization {
+    preferences Boolean
+    privacySettings Boolean
+    accountHistory String
+    bioDescription String
+}
+
+enum AchievementType{
+    All_Time_Best
+    Monthly_Top
+    Weekly_Star
+}
+
+entity Achievement {
+    achievementID Long
+    name String
+    description String
+    dateEarned LocalDate
+    achievementType AchievementType
+
+}
+
+entity Setting {
+    notificationsEnabled Boolean
+    accountDeletionRequested Boolean
+    changePassword Boolean
+}
+
+entity JoinedTeams {
+    TeamID Integer
+    name String
+    description String
+    memberSince LocalDate
+}
+
+
+relationship OneToOne {
+    ProfileCustomization to JoinedTeams
+    ProfileCustomization to Setting
+    ProfileCustomization to Achievement
+}
+
+entity Habit {
+    habitID Long
+    habitName String
+}
+
+entity NewWeeklyHabitTracker {
+    recordID Long
+    habitCompletion Boolean
+    date LocalDate
+}
+
+entity WeeklySummary {
+    summaryID Long
+    summaryText String
+}
+
+relationship OneToMany {
+    Habit to NewWeeklyHabitTracker
+}
+
+relationship OneToOne {
+    NewWeeklyHabitTracker to WeeklySummary
+}
+
+entity LeaderBoards {
+    Standings String
+}
+
+entity UserPoints {
+    userID Long
+    currentPoints Integer
+    previousPoints Integer
+    totalPoints Integer
+}
+
+entity Members {
+    groupID Long
+    userID Long
+    leader Boolean
+}
+
+entity Grouping {
+    ID String
+    groupingName String
+    groupingPoints Integer
+    remainingTime Duration
+    currentDate LocalDate
+}
+
+
+entity Badges {
+    badgeNo Integer
+    requiredPoints Integer
+    badge ImageBlob
+}
+
+relationship OneToMany {
+    LeaderBoards to UserPoints
+    Grouping to Members
+    Grouping to Badges
+}
+
+relationship OneToOne {
+    LeaderBoards to Grouping
+}
+
+entity NavigationPortal {
+    Features String
+    SelectedFeature Boolean
+}
+
+enum TabLabel {
+    All
+    Entries
+    Prompts
+}
+
+enum AIGeneratedPrompts {
+    Example1
+    Example2
+    Example3
+}
+
+enum Moods {
+    Mood1
+    Mood2
+    Mood3
+}
+
+entity MoodJournalPage {
+    allEntries String
+    date LocalDate
+    currentTab TabLabel
+}
+
+entity EntriesPage {
+    normalEntries String
+    date LocalDate
+    currentTab TabLabel
+}
+
+entity PromptsPage {
+    promptedEntries String
+    date LocalDate
+    emotionFromMoodPicker String
+    currentTab TabLabel
+}
+
+entity EmotionPage {
+    prompts AIGeneratedPrompts
+    date LocalDate
+    promptedEntry String
+    currentTab TabLabel
+}
+
+entity MoodPicker {
+    moodPickerID Long
+    Mood Moods
+}
+
+entity LandingPage {
+    GetStarted String
+    About String
+    Team String
+    Contact String
+
+}
+
+
+relationship OneToOne {
+    PromptsPage to MoodPicker
+    EmotionPage to MoodPicker
+    PromptsPage to EmotionPage
+    LandingPage to MoodPicker
+    UserDB to LandingPage
+}
+
+relationship OneToMany {
+    MoodJournalPage to EntriesPage
+    MoodJournalPage to PromptsPage
+}
+
+entity UserDB {
+    userID Long
+    email String
+    password String
+    phoneNumber String
+    profilePicture Blob
+    userName String
+}
+
+entity Progress {
+	detoxProgress    Long
+    detoxTotal		 Long
+	challengesInfo	 String
+	leaderboardInfo	 String
+}
+
+relationship OneToOne {
+Challenges to Progress
+LeaderBoards to Progress
+UserDB to Progress
+
+}
+
+relationship OneToOne {
+    NavigationPortal to Challenges
+    NavigationPortal to Habit
+    NavigationPortal to LeaderBoards
+    NavigationPortal to ProfileCustomization
+    NavigationPortal to MoodJournalPage
+    MoodPicker to NavigationPortal
+}

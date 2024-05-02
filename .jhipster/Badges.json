@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20240305141228",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "badges",
+  "fields": [
+    {
+      "fieldName": "badgeNo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "requiredPoints",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "badge",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Badges",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "grouping",
+      "otherEntityRelationshipName": "badges",
+      "relationshipName": "grouping",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

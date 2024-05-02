@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity NavigationPortal.
+    -->
+    <changeSet id="20240305141229-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="challenges_id"
+                                 baseTableName="navigation_portal"
+                                 constraintName="fk_navigation_portal__challenges_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="challenges"/>
+
+        <addForeignKeyConstraint baseColumnNames="habit_id"
+                                 baseTableName="navigation_portal"
+                                 constraintName="fk_navigation_portal__habit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="habit"/>
+
+        <addForeignKeyConstraint baseColumnNames="leader_boards_id"
+                                 baseTableName="navigation_portal"
+                                 constraintName="fk_navigation_portal__leader_boards_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="leader_boards"/>
+
+        <addForeignKeyConstraint baseColumnNames="profile_customization_id"
+                                 baseTableName="navigation_portal"
+                                 constraintName="fk_navigation_portal__profile_customization_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profile_customization"/>
+
+        <addForeignKeyConstraint baseColumnNames="mood_journal_page_id"
+                                 baseTableName="navigation_portal"
+                                 constraintName="fk_navigation_portal__mood_journal_page_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mood_journal_page"/>
+    </changeSet>
+</databaseChangeLog>

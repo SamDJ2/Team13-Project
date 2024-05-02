@@ -1,0 +1,35 @@
+{
+  "changelogDate": "20240329215607",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "username",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "currentPoints",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "previousPoints",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalPoints",
+      "fieldType": "Integer"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Points",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "leaderBoards",
+      "relationshipName": "leaderBoards",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

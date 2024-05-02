@@ -1,0 +1,154 @@
+<div>
+  <h2 id="page-heading" data-cy="NavigationPortalHeading">
+    <span>Navigation Portals</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-navigation-portal"
+        [routerLink]="['/navigation-portal/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Navigation Portal </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="navigationPortals?.length === 0">
+    <span>No Navigation Portals found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="navigationPortals && navigationPortals.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="features">
+            <div class="d-flex">
+              <span>Features</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="selectedFeature">
+            <div class="d-flex">
+              <span>Selected Feature</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="challenges.id">
+            <div class="d-flex">
+              <span>Challenges</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="habit.id">
+            <div class="d-flex">
+              <span>Habit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="leaderBoards.id">
+            <div class="d-flex">
+              <span>Leader Boards</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="profileCustomization.id">
+            <div class="d-flex">
+              <span>Profile Customization</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="moodJournalPage.id">
+            <div class="d-flex">
+              <span>Mood Journal Page</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let navigationPortal of navigationPortals; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/navigation-portal', navigationPortal.id, 'view']">{{ navigationPortal.id }}</a>
+          </td>
+          <td>{{ navigationPortal.features }}</td>
+          <td>{{ navigationPortal.selectedFeature }}</td>
+          <td>
+            <div *ngIf="navigationPortal.challenges">
+              <a [routerLink]="['/challenges', navigationPortal.challenges.id, 'view']">{{ navigationPortal.challenges.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="navigationPortal.habit">
+              <a [routerLink]="['/habit', navigationPortal.habit.id, 'view']">{{ navigationPortal.habit.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="navigationPortal.leaderBoards">
+              <a [routerLink]="['/leader-boards', navigationPortal.leaderBoards.id, 'view']">{{ navigationPortal.leaderBoards.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="navigationPortal.profileCustomization">
+              <a [routerLink]="['/profile-customization', navigationPortal.profileCustomization.id, 'view']">{{
+                navigationPortal.profileCustomization.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="navigationPortal.moodJournalPage">
+              <a [routerLink]="['/mood-journal-page', navigationPortal.moodJournalPage.id, 'view']">{{
+                navigationPortal.moodJournalPage.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/navigation-portal', navigationPortal.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/navigation-portal', navigationPortal.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(navigationPortal)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

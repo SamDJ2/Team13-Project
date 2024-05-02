@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <title>LEADERBOARD</title>
+  </head>
+
+  <body [ngClass]="theme">
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="" class="logo">
+              <img src="assets/images/purefy-removebg-preview.webp" alt="" style="margin-top: 5px" />
+            </a>
+            <!-- ***** Logo End ***** -->
+
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li><a routerLink="/Dashboard">Home</a></li>
+              <li><a routerLink="/Challenges-Index">Challenges</a></li>
+              <li><a routerLink="/MoodJournalPage">Mood Journal</a></li>
+              <li><a routerLink="/Habits">Habit Tracker</a></li>
+              <li><a routerLink="/Leaderboard" class="active">Leaderboards</a></li>
+              <li>
+                <a routerLink="/Profilepage" class="profile-link">Profile <img src="assets/images/profile-header.jpg" alt="" /></a>
+              </li>
+            </ul>
+            <a class="menu-trigger">
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <!-- ***** Main Section Start ***** -->
+    <div class="mainBox">
+      <div class="col-lg-12">
+        <div class="parentBox">
+          <div class="titleBox">
+            <h4 [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'">Your Group</h4>
+            <div class="selectors">
+              <div class="group-selection">
+                <select [(ngModel)]="selectedGroupId" (change)="onGroupChange()">
+                  <option [value]="addGroupId">Select Group</option>
+                  <option *ngFor="let group of options" [value]="group.groupID">{{ group.groupID }}</option>
+                  <option [value]="addGroupId">Add New Group</option>
+                </select>
+              </div>
+              <li class="font-size-slider-container" style="display: flex; align-items: center">
+                <input
+                  type="range"
+                  min="{{ minFontSize }}"
+                  max="{{ maxFontSize }}"
+                  step="0.05"
+                  [(ngModel)]="fontSizeMultiplier"
+                  (ngModelChange)="updateFontSize()"
+                  class="font-size-slider"
+                />
+              </li>
+              <button class="theme-toggle-button" (click)="toggleTheme()">
+                <i class="fas" [class.fa-moon]="theme === 'dark'" [class.fa-sun]="theme === 'light'"></i>
+              </button>
+            </div>
+          </div>
+          <!-- ***** Your Group Section Start ***** -->
+          <div class="your-group">
+            <!-- ***** Add New Group Section Start ***** -->
+            <div *ngIf="showCreateGroup">
+              <div class="nameBadge">
+                <div class="teamName">
+                  <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'">Welcome to Groups and Leaderboards!</h2>
+                  <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier * 0.8 + 'rem'">
+                    You can use groups and leaderboards to connect and compete with friends.<br />
+                    Complete challenges to earn points and see how you stack up!
+                  </p>
+                </div>
+              </div>
+              <div class="cojGroup">
+                <div class="createGroup">
+                  <form (ngSubmit)="onCreate()" #contactForm="ngForm" class="create">
+                    <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">Please enter your</h4>
+                    <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">new name to create:</h4>
+                    <input
+                      type="text"
+                      id="groupNameInput"
+                      placeholder="Name"
+                      required
+                      [(ngModel)]="createGroup.groupName"
+                      name="groupName"
+                      maxlength="20"
+                      [style.fontSize]="fontSizeMultiplier * 0.7 + 'rem'"
+                    />
+                    <br />
+                    <button type="submit" class="createGroupButton" [style.fontSize]="fontSizeMultiplier * 1.1 + 'rem'">
+                      Create Group
+                    </button>
+                  </form>
+
+                  <br />
+                </div>
+
+                <div class="Or">
+                  <h2 [style.fontSize]="fontSizeMultiplier * 1.7 + 'rem'">OR</h2>
+                </div>
+
+                <div class="joinGroup">
+                  <form (ngSubmit)="onJoin()" #contactForm="ngForm" class="join">
+                    <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">Please enter your</h4>
+                    <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">group code to join:</h4>
+                    <input
+                      type="text"
+                      id="groupCodeInput"
+                      placeholder="Code"
+                      required
+                      [(ngModel)]="joinGroup.groupID"
+                      name="groupID"
+                      minlength="1"
+                      [style.fontSize]="fontSizeMultiplier * 0.7 + 'rem'"
+                    />
+                    <br />
+                    <button type="submit" class="joinGroupButton" [style.fontSize]="fontSizeMultiplier * 1.1 + 'rem'">Join Group</button>
+                  </form>
+                  <br />
+                </div>
+              </div>
+            </div>
+            <!-- ***** Add New Group Section End ***** -->
+
+            <!-- ***** Group Section Start ***** -->
+            <div *ngIf="!showCreateGroup">
+              <div *ngFor="let entry of leaderboardData | slice: 0:1; let i = index">
+                <div class="nameBadge">
+                  <div class="teamName">
+                    <h1 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 2.1 + 'rem'">
+                      {{ entry.groupName }} <br />
+                      <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier * 1.1 + 'rem'">Code: {{ entry.groupID }}</p>
+                    </h1>
+                  </div>
+                  <div class="Badge">
+                    <img [src]="getBadgeImage(calculateGroupPoints())" alt="Badge" />
+                  </div>
+                </div>
+                <div class="Points">
+                  <h3 [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'">Total Weekly Points:</h3>
+                  <h3 [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'">{{ calculateGroupPoints() }}</h3>
+                  <h3 [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'">Next Badge:</h3>
+                  <img [src]="getBadgeImage(calculateGroupPoints() + 10)" alt="Next Badge" />
+                </div>
+                <div class="Buttons">
+                  <div class="leaveGroup">
+                    <form (ngSubmit)="onLeave()" #contactForm="ngForm" class="leave">
+                      <button
+                        *ngIf="!showLeaveConfirmation"
+                        (click)="triggerConfirmation('leave')"
+                        type="button"
+                        class="leaveGroupButton"
+                        [style.fontSize]="fontSizeMultiplier * 1.1 + 'rem'"
+                      >
+                        Leave Group
+                      </button>
+
+                      <div *ngIf="showLeaveConfirmation" class="confirmation">
+                        Are you sure?
+                        <br />
+                        <button class="yes" [style.fontSize]="fontSizeMultiplier * 1.1 + 'rem'" type="submit">Leave</button>
+                        <button class="no" [style.fontSize]="fontSizeMultiplier * 1.1 + 'rem'" (click)="confirmAction()">Cancel</button>
+                      </div>
+                    </form>
+                    <br />
+                  </div>
+                  <div class="deleteGroup" *ngIf="isCurrentUserLeader">
+                    <form (ngSubmit)="onDelete()" #contactForm="ngForm" class="delete">
+                      <button
+                        *ngIf="!showDeleteConfirmation"
+                        (click)="triggerConfirmation('delete')"
+                        type="button"
+                        class="deleteGroupButton"
+                        [style.fontSize]="fontSizeMultiplier * 1.1 + 'rem'"
+                      >
+                        Delete Group
+                      </button>
+
+                      <div *ngIf="showDeleteConfirmation" class="confirmation">
+                        Are you sure?
+                        <br />
+                        <button class="yes" [style.fontSize]="fontSizeMultiplier * 1.1 + 'rem'" type="submit">Delete</button>
+                        <button class="no" [style.fontSize]="fontSizeMultiplier * 1.1 + 'rem'" (click)="confirmAction()">Cancel</button>
+                      </div>
+                    </form>
+                    <br />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ***** Group Section End ***** -->
+          </div>
+
+          <!-- ***** Your Group Section End ***** -->
+
+          <div class="childBox">
+            <!-- ***** Previous Leaderboard Section Start ***** -->
+            <div class="previous-leaderboard">
+              <h4 [style.fontSize]="fontSizeMultiplier + 'rem'">Last Weeks Top 3</h4>
+              <br />
+              <div class="pleaderboard">
+                <div *ngFor="let entry of sortedByPreviousPoints | slice: 0:3; let i = index">
+                  <img *ngIf="getMedalImage(i + 1)" [src]="getMedalImage(i + 1)" alt="Medal" style="margin-left: 0" />
+                  <div class="Avatar">
+                    <img src="{{ entry.imageUrl }}" alt="Avatar" style="color: white" />
+                    <div class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier * 0.7 + 'rem'">{{ entry.login }}</div>
+                  </div>
+                  <div class="bar">
+                    <div class="progress" [style.width]="calculatePreviousWidth(entry)">
+                      <div class="animation">
+                        <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">
+                          {{ entry.previousPoints }}
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="sortedByCurrentPoints.length < 3" class="addMore">
+                  <div class="content">
+                    <i class="fa-solid fa-plus" [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'"></i>
+                    <div class="text" [style.fontSize]="fontSizeMultiplier * 1.1 + 'rem'">Invite more friends</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ***** Previous Leaderboard Section End ***** -->
+
+            <!-- ***** Overall Leaderboard Section Start ***** -->
+            <div class="overall-leaderboard">
+              <h4 [style.fontSize]="fontSizeMultiplier * 0.9 + 'rem'">Overall Top 3</h4>
+              <br />
+              <div class="oleaderboard">
+                <div class="topbox" *ngIf="sortedByTotalPoints.length > 0">
+                  <div *ngFor="let entry of sortedByTotalPoints | slice: 0:1; let i = index" [ngClass]="getOrdinalIndicator(1)">
+                    <div class="Avatar">
+                      <img src="{{ entry.imageUrl }}" alt="Avatar" style="color: white" />
+                      <div class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier * 0.9 + 'rem'">
+                        {{ entry.login }}
+                      </div>
+                    </div>
+                    <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.5 + 'rem'">
+                      {{ entry.totalPoints }}
+                    </h4>
+                  </div>
+                </div>
+
+                <!-- Bottom Box for the next two entries -->
+                <div class="bottombox" *ngIf="sortedByTotalPoints.length > 1">
+                  <div *ngFor="let entry of sortedByTotalPoints | slice: 1:3; let i = index" [ngClass]="getOrdinalIndicator(i + 2)">
+                    <div class="Avatar">
+                      <img src="{{ entry.imageUrl }}" alt="Avatar" style="color: white" />
+                      <div class="name" [style.fontSize]="fontSizeMultiplier * 0.9 + 'rem'">{{ entry.login }}</div>
+                    </div>
+                    <h4 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">
+                      {{ entry.totalPoints }}
+                    </h4>
+                  </div>
+                  <div
+                    *ngIf="sortedByCurrentPoints.length < 3"
+                    class="fa-solid fa-plus"
+                    [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'"
+                  ></div>
+                </div>
+                <div *ngIf="sortedByCurrentPoints.length < 2" class="bottombox">
+                  <div class="fa-solid fa-plus" [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'"></div>
+                </div>
+              </div>
+            </div>
+            <!-- ***** Overall Leaderboard Section End ***** -->
+          </div>
+        </div>
+        <div class="parentBoxR">
+          <!-- ***** Current Leaderboard Section Start ***** -->
+          <div class="titleBox">
+            <h4 [style.fontSize]="fontSizeMultiplier * 1.3 + 'rem'">Weekly Stats</h4>
+          </div>
+          <div class="weekly-stats">
+            <div class="current-leaderboard">
+              <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'">
+                Leaderboard <br />
+                <p class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier * 0.6 + 'rem'">Points will reset every monday</p>
+              </h2>
+
+              <div class="time-remaining">
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">{{ countdownDisplay }}</h3>
+              </div>
+              <br />
+            </div>
+
+            <div class="leaderboard">
+              <div
+                *ngFor="let entry of sortedByCurrentPoints | slice: 0:6; let i = index"
+                class="{{ i + 1 }}{{ getOrdinalIndicator(i + 1) }}"
+              >
+                <div class="medal">
+                  <img *ngIf="getMedalImage(i + 1)" [src]="getMedalImage(i + 1)" alt="Medal" style="margin-left: 0" />
+                </div>
+                <h3 [style.fontSize]="fontSizeMultiplier * 1.2 + 'rem'">{{ i + 1 }}{{ getOrdinalIndicator(i + 1) }}</h3>
+                <div class="Avatar">
+                  <img src="{{ entry.imageUrl }}" alt="Avatar" style="color: white" />
+                  <div class="dynamic-text-size" [style.fontSize]="fontSizeMultiplier * 0.8 + 'rem'">
+                    {{ entry.login }}
+                  </div>
+                </div>
+                <div class="bar">
+                  <div class="progress" [style.width]="calculateWidth(entry)">
+                    <div class="animation">
+                      <h2 class="dynamic-heading" [style.fontSize]="fontSizeMultiplier * 1.6 + 'rem'">
+                        {{ entry.currentPoints }}
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="sortedByCurrentPoints.length < 6" class="addMore">
+                <div *ngFor="let entry of leaderboardData | slice: 0:1; let i = index">
+                  <div class="content">
+                    <i class="fa-solid fa-plus" [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'"></i>
+                    <div class="text" [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'">
+                      Invite friends with the code: {{ entry.groupID }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="(account$ | async) === null" class="addMore">
+                <div class="content">
+                  <div class="text" [style.fontSize]="fontSizeMultiplier * 1.4 + 'rem'">Please Login To Use the Leaderboards Feature</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ***** Current Leaderboard Section End ***** -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ***** Main Section End ***** -->
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p [style.fontSize]="fontSizeMultiplier + 'rem'">
+              Thanks for visiting our website, Purefy!
+
+              <br />You are accessing an experimental web application developed by participants (Team 13) of the Team Project 2024 module.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

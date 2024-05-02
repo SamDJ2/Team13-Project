@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="badges">
+      <h2 data-cy="badgesDetailsHeading"><span>Badges</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ badges.id }}</span>
+        </dd>
+        <dt><span>Badge No</span></dt>
+        <dd>
+          <span>{{ badges.badgeNo }}</span>
+        </dd>
+        <dt><span>Required Points</span></dt>
+        <dd>
+          <span>{{ badges.requiredPoints }}</span>
+        </dd>
+        <dt><span>Badge</span></dt>
+        <dd>
+          <div *ngIf="badges.badge">
+            <a (click)="openFile(badges.badge, badges.badgeContentType)">
+              <img [src]="'data:' + badges.badgeContentType + ';base64,' + badges.badge" style="max-width: 100%" alt="badges image" />
+            </a>
+            {{ badges.badgeContentType }}, {{ byteSize(badges.badge) }}
+          </div>
+        </dd>
+        <dt><span>Grouping</span></dt>
+        <dd>
+          <div *ngIf="badges.grouping">
+            <a [routerLink]="['/grouping', badges.grouping.id, 'view']">{{ badges.grouping.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/badges', badges.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
